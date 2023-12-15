@@ -1,0 +1,37 @@
+.feed{
+    width: 59%;
+    height: 92vh;
+    position:absolute;
+    top: 13%;
+    left: 22%;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.feedDisplay{
+    width: 100%;
+    height: auto;
+}
+.post{
+    width: 95%;
+    margin-left: 1%;
+    background-color: white;
+    color: black;
+    border-radius: 7px 8px;
+    box-shadow: 0rem 0rem 0.2rem black;
+}
+.post > h3,p{
+    color: black;
+    background-color: transparent;
+}
+.post >h3{
+    margin: 2% 2% 0% 2%;
+    padding: 2% 2% 0% 2%;
+}
+.post >p{
+    margin: 0% 2% 2% 2%;
+    padding: 2% 2% 2% 2%;
+}

@@ -1,0 +1,79 @@
+.profilePage{
+    width: 73%;
+    height: 92vh;
+    position:absolute;
+    top: 15%;
+    left: 22%;
+}
+.userDetails{
+    position: fixed;
+    top: 13%;
+    left: 22%;
+    height: 50%;
+    width: 100%;
+    z-index: 1;
+}
+.profilePic{
+    height: 55%;
+    width: 50%;
+    position: relative;
+    top: 12%;
+    left: 11%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.profilePic>h1{
+    margin: 1%;
+    color: blueviolet;
+    text-shadow: 0rem 0rem 1px black;
+}
+.profilePic>img{
+    height: 50%;
+    width: 15%;
+    border-radius: 100%;
+}
+.userAnalytics{
+    width: 75%;
+    position: relative;
+    top: 10%;
+    left: -1.5%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.analytics{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.analytics > h2,h3{
+    font-size: 150%;
+    color: blueviolet;
+    margin: 1%;
+}
+.yourPostsDisplay{
+    position: relative;
+    top:50%;
+    width: 100%;
+    height: auto;
+}
+.posts{
+    width: 100%;
+    margin-left: 1%;
+    background-color: white;
+    color: black;
+    border-radius: 7px 8px;
+    box-shadow: 0rem 0rem 0.2rem black;
+}
+.posts > h3,p{
+    color: black;
+    background-color: transparent;
+}
+.posts >h3{
+    margin: 2% 2% 0% 2%;
+    padding: 2% 2% 0% 2%;
+}
+.posts >p{
+    margin: 0% 2% 2% 2%;
+    padding: 2% 2% 2% 2%;
+}

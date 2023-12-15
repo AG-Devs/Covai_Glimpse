@@ -1,0 +1,82 @@
+.newPostPage{
+    width: 73%;
+    height: 92vh;
+    position:fixed;
+    top: 15%;
+    left: 22%;
+}
+.newPostPage>h2{
+    color: blueviolet;
+}
+.newPostForm{
+    height: 75%;
+    width: 50%;
+    position: relative;
+    left: 23%;
+    background-color: white;
+    border-radius: 7px 8px;
+    box-shadow: 0rem 0rem 0.2rem black;
+}
+.formElement{
+    height: 90%;
+    width: 90%;
+    position: relative;
+    top: 10%;
+    left: 5%;
+    background-color: transparent;
+    display: flex;
+    flex-flow: column;
+    gap: 3%;
+}
+.inputs{
+    height: 80%;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-flow: column;
+    gap: 5%;
+}
+.inputs > input{
+    height: 10%;
+    width: 80%;
+    margin: 0% 10% 0% 10%;
+    background-color: white;
+    border-radius: 7px 8px;
+    border: 2px rgba(128, 128, 128, 0.473) solid;
+}
+.inputs>textarea{
+    height: 60%;
+    width: 80%;
+    margin: 0% 10% 0% 10%;
+    background-color: white;
+    border-radius: 7px 8px;
+    border: 2px rgba(128, 128, 128, 0.473) solid;
+}
+label{
+    position: absolute;
+    left: 100000px;
+}
+.postButtons{
+    height: 10%;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-evenly;
+}
+.postButton{
+    height: 100%;
+    width: 23%;
+    color: white;
+    font-size: 110%;
+    font-weight: 500;
+    border: none;
+    background-color: blue;
+    border-radius: 7px 8px;
+    box-shadow: 0rem 0rem 0.2rem black;
+}
+.postButton:hover{
+    height: 101%;
+    width: 24%;
+    font-size: 120%;
+    box-shadow: 0rem 0rem 0.5rem black ;
+}

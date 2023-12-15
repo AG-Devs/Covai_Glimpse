@@ -1,0 +1,149 @@
+.RightSideBar{
+    width: 17%;
+    height: 92vh;
+    background-color: transparent;
+    position: fixed;
+    top:18%;
+    left: 81%;
+    display: flex;
+    flex-flow: column;
+    gap: 10%;
+}
+
+.weather{
+    background-image: url(../images/sunrise.jpg);
+    background-size: cover;
+    background-position: 60%;
+    background-blend-mode: color-burn;
+}
+.weather2{
+    background-image: url(../images/moon.jpg);
+    background-size: cover;
+    background-blend-mode: color-burn;
+}
+
+.weather,.weather2{
+    height: 40%;
+    width: 90%;
+    background-color: transparent;
+    border-radius: 7px 8px;
+    box-shadow: 0rem 0rem 0.5rem black;
+}
+.weather>h3{
+    width: 100%;
+    text-align: center;
+    height: 20%;
+    width: 95%;
+    color: black;
+    text-shadow: 0rem 0rem 0.5rem white;
+    background-color: transparent;
+}
+.weather2>h3{
+    width: 100%;
+    text-align: center;
+    height: 20%;
+    width: 95%;
+    color: white;
+    text-shadow: 0rem 0rem 0.5rem black;
+    background-color: transparent;
+}
+.weatherComponents{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    font-size: 80%;
+    justify-content: space-evenly;
+    background-color: transparent;
+}
+.weatherComponents>p{
+    background-color: transparent;
+    color: black;
+    text-shadow: 0rem 0rem 0.5rem white;
+}
+.climate,.climate2{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 0%;
+    background-color: transparent;
+}
+.climate>p{
+    margin: 10% 0% 0% 0%;
+    color: black;
+    text-shadow: 0rem 0rem 0.5rem white;
+    font-weight: bold;
+    
+}
+.climate2>p{
+    margin: 10% 0% 0% 0%;
+    color: white;
+    text-shadow: 0rem 0rem 0.5rem black;
+    font-weight: bold;
+    
+}
+.climate1{
+    background-color: transparent;
+    position: relative;
+    top: 15%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.climate1>img{
+    height: 40%;
+    width: 40%;
+    background-color: transparent;
+    margin: 0%;
+    
+}
+.climateName{
+    background-color: transparent;
+    margin: 0%;
+    position: absolute;
+    top: 80%;
+    font-weight: bold;
+    color: black;
+    text-shadow: 0rem 0rem 0.5rem white;
+}
+.climateName2{
+    background-color: transparent;
+    margin: 0%;
+    position: absolute;
+    top: 80%;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0rem 0rem 0.5rem black;
+}
+
+.news{
+    height: 40%;
+    width: 100%;
+    overflow: scroll;
+    display: flex;
+    flex-flow: column;
+    gap: 5%;
+}
+.news>h2{
+    position: fixed;
+    top: 55%;
+}
+.news1{
+    background-color: white;
+    height: 100%;
+    width: 90%;
+    font-size: 80%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.news1>p{
+    margin: 0% 2% 0% 5%;
+    width:90%;
+    height: 40%;
+    overflow: hidden;
+}
+.news1>img{
+    height:50%;
+    width: 90%;
+    margin-top: 5%;
+}

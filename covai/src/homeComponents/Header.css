@@ -1,0 +1,43 @@
+.Header{
+    height: 13%;
+    width: 100%;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 1%;
+    box-shadow: 0rem 0rem 0.1rem black;
+    z-index: 2;
+}
+.Header>h1{
+    background-color: transparent;
+    margin: 0% 0% 0% 1%;
+    flex-grow: 1;
+    color: blueviolet;
+}
+.Header>img{
+    height: 65%;
+    width: 4%;
+    margin-left: 5%;
+    border-radius: 100%
+}
+.headerButton{
+    height: 65%;
+    width: 10%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+.headerButtons{
+    height: 65%;
+    width: 40%;
+}
+.headerButtons>svg{
+    height: 100%;
+    width: 100%;
+    color: blueviolet;
+    background-color: transparent;
+    margin-left: 2%;
+}
