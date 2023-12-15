@@ -14,7 +14,99 @@
 .feedDisplay{
     width: 100%;
     height: auto;
+    position: absolute;
+    top: 10%;
 }
+
+.weather{
+    background-image: url(../images/sunrise.jpg);
+    background-size: cover;
+    background-position: 60%;
+    background-blend-mode: color-burn;
+}
+.weather2{
+    background-image: url(../images/moon.jpg);
+    background-size: cover;
+    background-position:10%;
+    background-blend-mode: color-burn;
+}
+
+.weather,.weather2{
+    height: 10%;
+    width: 59%;
+    margin: 3% 0% 0% 2%;
+    position: fixed;
+    top: 6%;
+    left: 19%;
+    background-color: transparent;
+    border-radius: 7px 8px;
+    box-shadow: 0rem 0rem 0.5rem black;
+}
+.weatherComponents>h3,.weatherComponents2>h3{
+    width: 100%;
+    text-align: center;
+    height: 1%;
+    width: 10%;
+    color: white;
+    text-shadow: 0rem 0rem 0.5rem black;
+    background-color: transparent;
+}
+
+.weatherComponents,.weatherComponents2{
+    height: 1%;
+    width: 100%;
+    display: flex;
+    font-size: 80%;
+    justify-content: space-evenly;
+    background-color: transparent;
+}
+.weatherComponents>p,.weatherComponents2>p{
+    background-color: transparent;
+    color: white;
+    text-shadow: 0rem 0rem 0.5rem white;
+}
+.climate,.climate2{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 0%;
+    background-color: transparent;
+}
+.climate>p,.climate2>p{
+    margin: 10% 0% 0% 0%;
+    color: white;
+    text-shadow: 0rem 0rem 0.5rem black;
+    font-weight: bold;
+    
+}
+.climate1{
+    background-color: transparent;
+    position: relative;
+    top: 1%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.climate1>img{
+    height: 6%;
+    width: 4%;
+    position: fixed;
+    top: 13%;
+    background-color: transparent;
+    margin: 0%;
+    
+}
+
+.climateName,.climateName2{
+    background-color: transparent;
+    margin: 0%;
+    position: fixed;
+    top: 17.5%;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0rem 0rem 0.5rem black;
+}
+
 .post{
     width: 95%;
     margin-left: 1%;
