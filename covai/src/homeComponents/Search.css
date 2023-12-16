@@ -1,0 +1,24 @@
+.search{
+    background-color: transparent;
+}
+.search>form{
+    background-color: transparent;
+}
+.search>form input{
+    background-color: transparent;
+    position:absolute;
+    top: 35%;
+    right:11.5%;
+    height: 30%;
+    width: 35%;
+    border-radius: 7px 8px;
+    border: 2px solid rgba(128, 128, 128, 0.494);
+    padding-left: 1.8%;
+}
+.search>svg{
+    background-color: transparent;
+    position: absolute;
+    left: 51.5%;
+    top:44%;
+    color: rgba(128, 128, 128, 0.981);
+}

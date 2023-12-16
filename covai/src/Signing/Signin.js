@@ -3,7 +3,7 @@ import './Signin.css'
 import axios from 'axios'
 
 
-const Signin = ({setprofileName,navigate}) => {
+const Signin = ({setuserName,navigate}) => {
 
     
     const [name,setname]=useState('')
@@ -24,7 +24,7 @@ const Signin = ({setprofileName,navigate}) => {
     const handleForm=(e)=>{
         e.preventDefault()
         console.log('hi')
-        setprofileName(name)
+        setuserName(name)
         setname('')
         setenterPassword('')
         navigate('/home')

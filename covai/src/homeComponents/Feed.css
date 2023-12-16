@@ -21,8 +21,7 @@
 .weather{
     background-image: url(../images/sunrise.jpg);
     background-size: cover;
-    background-position: 60%;
-    background-blend-mode: color-burn;
+    background-position: 30%;
 }
 .weather2{
     background-image: url(../images/moon.jpg);
@@ -115,16 +114,44 @@
     border-radius: 7px 8px;
     box-shadow: 0rem 0rem 0.2rem black;
 }
-.post > h3,p{
+.feedUserInfo{
+    background-color: transparent;
+    margin: 2% 4% 2% 4%;
+    display: flex;
+    align-items: center;
+    gap: 2%;
+}
+.feedUserInfo > h2{
+    margin: 2% 0% 0% 0%;
+}
+.feedUserInfo > img {
+    margin: 2% 0% 0% 0%;
+    height: 6%;
+    width: 6%;
+}
+.post > h3,p,h2{
     color: black;
     background-color: transparent;
 }
 .post >h3{
     margin: 2% 2% 0% 2%;
-    padding: 2% 2% 0% 2%;
+    padding: 0% 2% 0% 2%;
 }
 .post >p{
     margin: 0% 2% 2% 2%;
     padding: 2% 2% 2% 2%;
     font-weight: 500;
+}
+.feedImg{
+    background-color: white;
+    border-radius: 7px 8px;
+    margin-bottom: 1%;
+}
+.feedImg>img{
+    height: 40%;
+    width: 40%;
+    margin-left: 30%;
+}
+.feedImg1{
+    display: none;
 }

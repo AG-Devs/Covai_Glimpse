@@ -4,7 +4,7 @@ import axios from 'axios'
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
-const Feed = () => {
+const Feed = ({finalComment}) => {
 
   useEffect(()=>{
     weatherApi()
@@ -17,24 +17,12 @@ const Feed = () => {
   const weatherApi= async ()=>{
     try{
       const weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=369251809b1255cfcdeef27792d91192`)
-      console.log(weather.data)
       setweather(weather.data)
     }
     catch(err){
       console.log(err)
     }
-}
-
-  const posts = [ {id:'1',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side kdldn df zfzj zdfmzlmzklmzlmkkzm zbdfbkmzbb zbdf kfvknv vnonr zbdbd"},
-                  {id:'2',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {id:'3',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {id:'4',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {id:'5',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {id:'6',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {id:'7',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {id:'8',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {id:'9',name:'road patch',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"}
-                ]
+  }
 
   return (
     <div className='feed'>
@@ -67,18 +55,32 @@ const Feed = () => {
                     'Sorry,Server is busy'
                   }
               </div>
-          {posts.map((singlePost)=>(
+          {finalComment.map((singlePost)=>(
             <Link to={`/home/post/${singlePost.id}`}>
               <div className='post'>
                 {(singlePost.content).length > 270 ? 
                   <>
-                    <h3>{singlePost.name.toUpperCase()}</h3>
-                    <p>{singlePost.content.slice(0,271)+"..."}</p>  
+                      <div className='feedUserInfo'>
+                          <img src={require('.././images/userIcon.png')} />
+                          <h2>@{singlePost.userName}</h2>
+                      </div>
+                      <h3>{singlePost.title.toUpperCase()}</h3>
+                      <p>{singlePost.content.slice(0,271)+"..."}</p>
+                      <div className={singlePost.img ? 'feedImg' : 'feedImg1'}>
+                          <img src={singlePost.img} alt='' />
+                      </div>
                   </>                  
                   : 
                   <>
-                      <h3>{singlePost.name.toUpperCase()}</h3>
+                      <div className='feedUserInfo'>
+                          <img src={require('.././images/userIcon.png')} />
+                          <h2>@{singlePost.userName}</h2>
+                      </div>
+                      <h3>{singlePost.title.toUpperCase()}</h3>
                       <p>{singlePost.content}</p>
+                      <div className={singlePost.img ? 'feedImg' : 'feedImg1'}>
+                          <img src={singlePost.img} alt='' />
+                    </div>
                   </>
                 }
               </div>

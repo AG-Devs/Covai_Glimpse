@@ -43,14 +43,17 @@
     background-color: white;
     border-radius: 7px 8px;
     border: 2px rgba(128, 128, 128, 0.473) solid;
+    padding: 1%;
 }
 .inputs>textarea{
-    height: 60%;
+    height: 40%;
     width: 80%;
     margin: 0% 10% 0% 10%;
     background-color: white;
     border-radius: 7px 8px;
     border: 2px rgba(128, 128, 128, 0.473) solid;
+    resize: none;
+    padding: 1%;
 }
 label{
     position: absolute;
@@ -80,3 +83,50 @@ label{
     font-size: 120%;
     box-shadow: 0rem 0rem 0.5rem black ;
 }
+.imageInput{
+    display: none;
+}
+.getImage{
+    background-color: transparent;
+}
+.getImage > label {
+    position: relative;
+    left: 20%;
+    background-color: transparent;
+}
+.getImage>img{
+   height: 80%;
+   width: 15%;
+   border-radius: 100%;
+   position: relative;
+   left: 22%;
+   top:30%
+}
+.tick{
+    background: transparent;
+    height: 10%;
+}
+.tick>button{
+    background-color: transparent;
+    border: none;
+}
+.tick>img{
+    background: transparent;
+    height: 120%;
+    width: 13%;
+    border-radius: 100%;
+    position: relative;
+    left: 64%;
+    top:-160%;
+}
+.tick>button>svg{
+ background-color: transparent;
+ height: 10%;
+ width: 10%;
+ position:absolute;
+ left: 80%;
+ top:58%;
+}
+.tick>button>svg:hover{
+   color: red;
+   }

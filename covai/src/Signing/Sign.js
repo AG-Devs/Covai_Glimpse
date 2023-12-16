@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Sign.css'
 import axios from 'axios'
 
-const Sign = ({setprofileName,setdata,navigate}) => {
+const Sign = ({setuserName,setdata,navigate}) => {
 
     const [name,setname]=useState('')
     const [createPassword,setcreatePassword]=useState('')
@@ -30,7 +30,7 @@ const Sign = ({setprofileName,setdata,navigate}) => {
                 password:createPassword
             })
             .then(res => console.log('server is working'));
-            setprofileName(name)
+            setuserName(name)
             setname('')
             setcreatePassword('')
             setreEnterPassword('')

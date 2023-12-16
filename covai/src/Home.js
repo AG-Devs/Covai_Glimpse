@@ -4,17 +4,17 @@ import LeftSideBar from './homeComponents/LeftSideBar'
 import RightSideBar from './homeComponents/RightSideBar'
 import { Outlet } from 'react-router-dom'
 
-const Home = ({profileName,data,navigate,toggle,settoggle}) => {
-    console.log(data)
-    console.log(typeof(data))
+const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search}) => {
 
   return (
     <div>
         <Header 
           settoggle={settoggle}
+          search={search}
+          setsearch={setsearch}
         />
         <LeftSideBar 
-            profileName={profileName}
+            userName={userName}
             settoggle={settoggle}
         />        
         {toggle ? <RightSideBar 

@@ -1,25 +1,47 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import './Profile.css'
+import {Link} from 'react-router-dom'
 
-const Profile = ({profileName}) => {
+const Profile = ({profileVideo,profileImage,setprofileImage,finalComment,navigate,userName}) => {
 
-    const yourPosts = [ {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                        {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                        {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                        {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                        {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                        {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                        {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                        {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                        {name:'road patch',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"}
-                      ]
+    const inputRef2 = useRef()
+    const handleProfileClick = ()=>{
+        inputRef2.current.click()
+    }
+    const handleProfileUpload = (e)=>{
+        setprofileImage(URL.createObjectURL(e.target.files[0]))
+    }
+
+    const requiredObject = finalComment.filter((single)=>(
+        single.userName === userName
+    ))
 
   return (
     <div className='profilePage'>
         <div className='userDetails'>
-            <div className='profilePic'>
-                <img src={require('.././images/userIcon.png')} alt='logo'></img>
-                <h1>hi</h1>
+            <div className='profileDetails'>
+                    <div className='profilePic'>
+                            <div className='profileVideo'>
+                                {profileVideo ?  
+                                    <video muted autoPlay>
+                                        <source src={profileVideo}></source>
+                                    </video>
+                                : profileImage ? <img src={profileImage} alt=''></img>
+                                : <img style={{height:'100%'}} onClick={(e)=>handleProfileClick(e)} src={require('.././images/userIcon.png')} alt=''></img>}
+                            </div>
+                            <h1>@{userName}</h1>
+                            <div className = 'imgInput'>
+                                <input
+                                    type='file'
+                                    accept='image/jpg, image/png'
+                                    ref={inputRef2}
+                                    onChange={(e)=>{handleProfileUpload(e)}}
+                                ></input>
+                            </div>
+                    </div>
+                    <div>
+                        <Link to='/home/editprofile' className='profileButtons'><p> Edit</p></Link>
+                    </div>
             </div>
             <div className='userAnalytics'>
                 <div className='analytics'>
@@ -37,12 +59,23 @@ const Profile = ({profileName}) => {
             </div>
         </div>
         <div className='yourPostsDisplay'>
-            {yourPosts.map((singlePost)=>(
-                <div className='posts'>
-                    <h3>{singlePost.name.toUpperCase()}</h3>
-                    <p>{singlePost.content}</p>
+            {requiredObject.length ? 
+                    requiredObject.map((singlePost)=>(
+                        <Link to={`/home/post/${singlePost.id}`}>
+                            <div className='posts'>
+                                <h3>{singlePost.title.toUpperCase()}</h3>
+                                <p>{singlePost.content}</p>
+                                <div className={singlePost.img ? 'profileFeedImg' : 'profileFeedImg1'}>
+                                     <img src={singlePost.img} alt='' />
+                                </div>
+                            </div>
+                        </Link>
+                    ))
+                : 
+                <div className='noPost'>
+                    <p>Upload Your First Post</p> 
                 </div>
-            ))}
+                }
         </div>
     </div>
   )

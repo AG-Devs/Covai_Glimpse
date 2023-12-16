@@ -1,0 +1,23 @@
+.editprofile{
+    background-color: transparent;
+    position:fixed;
+    height:20%;
+    width: 80%;
+    top: 30%;
+    left: 30%;
+   
+}
+.editprofile>form{
+    display: flex;
+    flex-flow: column;
+    height: 120%;
+    width: 60%;
+    gap:30%;
+    background-color:transparent;
+}
+.editprofile>form>div >input{
+    background-color: white;
+    height: 160%;
+    width: 90%;
+    border-radius: 10px;
+}

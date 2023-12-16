@@ -1,7 +1,34 @@
 .notificationPage{
-    width: 73%;
-    height: 92vh;
+    width: 95%;
+    height: 180%;
     position:absolute;
     top: 15%;
     left: 22%;
+    display: flex;
+    flex-flow: column;  
+    gap: 1.5%;  
+}
+.notificationPage1{
+    width: 95%;
+    height: 300%;
+    position:absolute;
+    top: 15%;
+    left: 22%;
+    display: flex;
+    flex-flow: column;
+}
+.notificationPage2{
+    background-color: transparent;
+    height: 80%;
+    width: 80%;
+    
+}
+.notificationPage3{
+    height: 90%;
+    background-color: white;
+    box-shadow: 0rem 0rem 0.5rem black;
+    border-radius: 7px 8px;
+}
+.notificationPage3:hover{
+    height: 110%;
 }
