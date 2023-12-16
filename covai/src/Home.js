@@ -4,11 +4,9 @@ import LeftSideBar from './homeComponents/LeftSideBar'
 import RightSideBar from './homeComponents/RightSideBar'
 import { Outlet } from 'react-router-dom'
 
-const Home = ({profileName,data}) => {
+const Home = ({profileName,data,navigate,toggle,settoggle}) => {
     console.log(data)
     console.log(typeof(data))
-
-    const [toggle,settoggle]=useState(true)
 
   return (
     <div>
@@ -19,7 +17,10 @@ const Home = ({profileName,data}) => {
             profileName={profileName}
             settoggle={settoggle}
         />        
-        {toggle ? <RightSideBar /> : ''}
+        {toggle ? <RightSideBar 
+                      navigate={navigate} 
+                  /> 
+                : ''}
         <Outlet />
     </div>
   )

@@ -14,9 +14,21 @@
     position: relative;
     top: -5%;
     margin: 5% 0% 0% 2%;
-    background-color: white;
+    background-image: url(../images/map.png);
+    background-size:200%;
+    background-position: center;
     border-radius: 7px 8px;
     box-shadow: 0rem 0rem 0.5rem black;
+    cursor: pointer;
+    text-shadow: 0rem 0rem 1rem black;
+}
+.touristMap > p{
+    font-size: 150%;
+    font-weight: bold;
+    color: white;
+    margin-left: 12%;
+    position: absolute;
+    top: 0%;
 }
 .news{
     height: 40%;

@@ -3,7 +3,7 @@ import axios from 'axios'
 import './RightSideBar.css'
 import { format } from 'date-fns'
 
-const RightSideBar = () => {
+const RightSideBar = ({navigate}) => {
 
   useEffect(()=>{
     NewsApi()
@@ -33,8 +33,8 @@ const RightSideBar = () => {
   return (
     <div className='RightSideBar'>
 
-              <button className='touristMap'>
-                
+              <button className='touristMap' onClick={()=>{navigate('/home/touristspots')}}>
+                  <p>Tourist Places</p>
               </button>
 
               <div className='news'>

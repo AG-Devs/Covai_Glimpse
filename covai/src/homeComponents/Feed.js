@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import './Feed.css'
 import axios from 'axios'
 import { format } from 'date-fns'
+import { Link } from 'react-router-dom'
 
 const Feed = () => {
 
@@ -24,15 +25,15 @@ const Feed = () => {
     }
 }
 
-  const posts = [ {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
-                  {name:'road patch',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"}
+  const posts = [ {id:'1',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side kdldn df zfzj zdfmzlmzklmzlmkkzm zbdfbkmzbb zbdf kfvknv vnonr zbdbd"},
+                  {id:'2',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
+                  {id:'3',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
+                  {id:'4',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
+                  {id:'5',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
+                  {id:'6',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
+                  {id:'7',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
+                  {id:'8',name:'jumping from clif',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"},
+                  {id:'9',name:'road patch',content:"Meaning. Road refers to the path or route that's often built between or within cities or towns for easy transportation. Street refers to a pathway for the public that's usually constructed with houses on either side"}
                 ]
 
   return (
@@ -67,10 +68,21 @@ const Feed = () => {
                   }
               </div>
           {posts.map((singlePost)=>(
+            <Link to={`/home/post/${singlePost.id}`}>
               <div className='post'>
-                  <h3>{singlePost.name.toUpperCase()}</h3>
-                  <p>{singlePost.content}</p>
+                {(singlePost.content).length > 270 ? 
+                  <>
+                    <h3>{singlePost.name.toUpperCase()}</h3>
+                    <p>{singlePost.content.slice(0,271)+"..."}</p>  
+                  </>                  
+                  : 
+                  <>
+                      <h3>{singlePost.name.toUpperCase()}</h3>
+                      <p>{singlePost.content}</p>
+                  </>
+                }
               </div>
+            </Link>
           ))}
       </div>
     </div>
