@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Signin.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 
 const Signin = ({setuserName,navigate,}) => {
@@ -70,9 +71,9 @@ const Signin = ({setuserName,navigate,}) => {
                     ></input>
                     <button type='submit' className='signinButton'>Sign In</button>
                 </form>
-                <p>Create account? <a href='/signup'>Sign Up</a></p>
+                <p>Create account? <Link to='/signup' className='Link'>Sign Up</Link></p>
             </div>
-            <p className='Agreement'>By clicking "Sign In", you agree to our <a href='/TermsAndConditions' style={{color:'white',textDecoration:'underline'}}>Terms & Conditions</a>. &copy;CopyRight by AG Devs.</p>
+            <p className='Agreement'>By clicking "Sign In", you agree to our <Link to='/TermsAndConditions' className='Link' style={{color:'white',textDecoration:'underline'}}>Terms & Conditions</Link>. &copy;CopyRight by AG Devs.</p>
     </div>
   )
 }

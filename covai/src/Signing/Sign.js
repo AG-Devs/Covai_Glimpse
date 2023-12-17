@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Sign.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,userDetailsArray,setuserDetailsArray,mobilenumber,gmail,gender,age,profileImage,profileVideo}) => {
 
@@ -102,9 +103,9 @@ const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,u
                     ></input>
                     <button type='submit' className='signupButton'>Sign Up</button>
                 </form>
-                <p>Already have account? <a href='/'>Sign In</a></p>
+                <p>Already have account? <Link to='/' className='Link'>Sign In</Link></p>
             </div>
-            <p className='Agreement'>By clicking "Sign Up", you agree to our <a href='/TermsAndConditions' style={{color:'white',textDecoration:'underline'}}>Terms & Conditions</a>. &copy;CopyRight by AG Devs.</p>
+            <p className='Agreement'>By clicking "Sign Up", you agree to our <Link to='/TermsAndConditions' className='Link' style={{color:'white',textDecoration:'underline'}}>Terms & Conditions</Link>. &copy;CopyRight by AG Devs.</p>
     </div>
   )
 }
