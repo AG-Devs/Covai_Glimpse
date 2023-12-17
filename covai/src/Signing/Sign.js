@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Sign.css'
 import axios from 'axios'
 
-const Sign = ({setuserName,setdata,navigate}) => {
+const Sign = ({userName,setuserName,Password,setPassword,setdata,navigate,userDetailsArray,setuserDetailsArray,mobilenumber,gmail,gender,age,profileImage,profileVideo}) => {
 
     const [name,setname]=useState('')
     const [createPassword,setcreatePassword]=useState('')
@@ -22,15 +22,19 @@ const Sign = ({setuserName,setdata,navigate}) => {
 
     const handleForm=(e)=>{
         e.preventDefault()
-        console.log('hi')
         if (createPassword === reEnterPassword)
         {
-            axios.post('http://localhost:3001/app/signup',{
+            /*axios.post('http://localhost:3001/app/signup',{
                 name:name,
                 password:createPassword
             })
-            .then(res => console.log('server is working'));
+            .then(res => console.log('server is working'));*/
             setuserName(name)
+            setPassword(createPassword)
+            const id = userDetailsArray.length ? userDetailsArray[userDetailsArray.length-1].id + 1 : 1 ;
+            const temp = {id:id,userName:name,password:createPassword,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo}
+            const updatedArray = [...userDetailsArray,temp]
+            setuserDetailsArray(updatedArray)
             setname('')
             setcreatePassword('')
             setreEnterPassword('')

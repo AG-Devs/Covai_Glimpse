@@ -14,7 +14,7 @@ const RightSideBar = ({navigate}) => {
 
   const NewsApi= async ()=>{
       try{
-        const News = await axios.get(`https://newsapi.org/v2/everything?q=coimbatore&from=${finalDate}-1&sortBy=publishedAt&apiKey=fc6937a1f789403881b2fcca1d5d319e`)
+        const News = await axios.get(`https://newsapi.org/v2/everything?q=tamilnadu&from=${finalDate}-1&sortBy=publishedAt&apiKey=fc6937a1f789403881b2fcca1d5d319e`)
         console.log(News.data.articles)
         setNews(News.data.articles)
       }
@@ -38,7 +38,7 @@ const RightSideBar = ({navigate}) => {
               </button>
 
               <div className='news'>
-                <h2>Covai Top News:</h2>
+                <h2>TN News:</h2>
                   {News.map((article)=>(
                       <a href={article.url}>
                         <div className='news1'>

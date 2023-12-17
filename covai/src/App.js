@@ -19,21 +19,25 @@ function App() {
 
   const [data,setdata] = useState('')
   const [userName,setuserName]=useState('')
+  const [Password,setPassword]=useState('')
   const [toggle,settoggle]=useState(true)
   const[search,setsearch]=useState('')
   const[mobilenumber,setmobilenumber]=useState('')
-  const[gmail,setgmail]=useState('')
-  const[gender,setgender]=useState('')
-  const[age,setage]=useState('')
-  const[profileVideo,setprofileVideo]=useState('')
-  const[profileImage,setprofileImage]=useState('')
+  const[gmail,setgmail]=useState(null)
+  const[gender,setgender]=useState(null)
+  const[age,setage]=useState(null)
+  const[profileVideo,setprofileVideo]=useState(null)
+  const[profileImage,setprofileImage]=useState(null)
+  const[tick,settick]=useState(false)
 
   const handleProfileVideo=((e)=>{
     setprofileVideo(URL.createObjectURL(e.target.files[0]))
+    settick(true)
   })
 
 
-  const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',title:"welcome",content:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
+  const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',title:"welcome",img:null,content:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
+  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo}])
 
   return (
     <div className="App">
@@ -48,9 +52,19 @@ function App() {
         />
         <Route path='/signup' element={
               <Sign 
+                userName={userName}
                 setuserName={setuserName}
+                Password={Password}
+                setPassword={setPassword}
                 navigate={navigate}
                 setdata={setdata}
+                userDetailsArray={userDetailsArray}
+                setuserDetailsArray={setuserDetailsArray}
+                handleProfileVideo={handleProfileVideo}
+                mobilenumber={mobilenumber}
+                gmail={gmail}
+                gender={gender}
+                age={age}
               />
             }
         />
@@ -63,12 +77,15 @@ function App() {
                 settoggle={settoggle}
                 search={search}
                 setsearch={setsearch}
+                profileImage={profileImage}
+                userDetailsArray={userDetailsArray}
               />
             }>
                  <Route index element={<Feed 
                                           finalComment={finalComment.filter((single)=>(
-                                            single.title.toLowerCase().includes(search.toLowerCase())
-                                          ))}
+                                                          single.title.toLowerCase().includes(search.toLowerCase())
+                                                       ))}
+                                          profileImage={profileImage}
                                         />} 
                  /> 
                  <Route path='profile' element={<Profile 
@@ -78,6 +95,8 @@ function App() {
                                                     profileImage={profileImage}
                                                     setprofileImage={setprofileImage}
                                                     profileVideo={profileVideo}
+                                                    settoggle={settoggle}
+                                                    userDetailsArray={userDetailsArray}
                                                 />} 
                   />
                  <Route path='notification' element={<Notification />} />
@@ -94,6 +113,7 @@ function App() {
                                                           finalComment={finalComment}
                                                           setfinalComment={setfinalComment}
                                                           userName={userName}
+                                                          profileImage={profileImage}
                                                       />} 
                  />
                 <Route path='editprofile' element={<EditProfile 
@@ -101,12 +121,14 @@ function App() {
                                                    setgmail={setgmail}
                                                    setgender={setgender}
                                                    setage={setage}
+                                                   profileVideo={profileVideo}
                                                    setprofileVideo={setprofileVideo}
                                                    handleProfileVideo={handleProfileVideo}
-                                                   mobilenumber={mobilenumber}
-                                                   gmail={gmail}
-                                                   gender={gender}
-                                                   age={age}
+                                                   tick={tick}
+                                                   settick={settick}
+                                                   settoggle={settoggle}
+                                                   userName={userName}
+                                                   userDetailsArray={userDetailsArray}
                                                   />} 
                 />
         </Route>

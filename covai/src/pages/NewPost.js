@@ -9,6 +9,9 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName}) => 
     const [title,settitle]= useState('')
     const [message,setmessage]=useState('')
     const [img,setimg]=useState(null)
+    const [uploadImage,setuploadImage]=useState(null)
+    const[tick,settick]=useState(false)
+
     
     const dateTime = format(new Date(), 'dd-MM-yyyy/HH-mm')
 
@@ -23,24 +26,32 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName}) => 
         navigate('/home')
     }
     const handleImage = (e)=>{
-        setimg(URL.createObjectURL(e.target.files[0]))
-        settick(true)
+        try{
+            const temp = e.target.files[0] ? e.target.files[0] : ''
+            setimg(URL.createObjectURL(temp))
+            setuploadImage(null)
+            settick(true)
+        }
+        catch(err){
+            handleDelete()
+        }
     }
     const handleCancel=()=>{
         navigate('/home')
         settoggle(true)
     }
+
     const inputRef=useRef()
     const handleReference=(()=>{
         inputRef.current.click()
     })
-    const[tick,settick]=useState(false)
-    const[Delete,setDelete]=useState(false)
 
-    const handleDelete=(()=>{
+    const handleDelete=(()=>{      
+        setuploadImage(null)
+        setimg(null)
         settick(false)
     })
-
+    
   return (
     <div className='newPostPage'>
         <h2>Create New Post !</h2>
@@ -65,7 +76,6 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName}) => 
                         <label htmlFor='uploadimage'>Upload Image : </label>
                         <img src={require('../images/upload.png')} onClick={()=>{handleReference()}}/>
                     </div>
-               
                          {tick?
                          <div  className='tick'>
                                 <img src={require('../images/tick.png')} alt='uploaded'/>
@@ -77,6 +87,7 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName}) => 
                         className='imageInput'
                         id='uploadimage'
                         type='file' 
+                        value={uploadImage}
                         ref={inputRef}
                         accept='image/png, image/jpg'
                         onChange={(e)=>{handleImage(e)}}

@@ -4,7 +4,7 @@ import axios from 'axios'
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
-const Feed = ({finalComment}) => {
+const Feed = ({finalComment,profileImage}) => {
 
   useEffect(()=>{
     weatherApi()
@@ -61,7 +61,12 @@ const Feed = ({finalComment}) => {
                 {(singlePost.content).length > 270 ? 
                   <>
                       <div className='feedUserInfo'>
-                          <img src={require('.././images/userIcon.png')} />
+                          {singlePost.img 
+                                  ? 
+                                    <img src={singlePost.img} alt=''></img>      
+                                  : 
+                                    <img style={{height:'70%'}}src={require('.././images/userIcon.png')} alt=''></img>
+                          }
                           <h2>@{singlePost.userName}</h2>
                       </div>
                       <h3>{singlePost.title.toUpperCase()}</h3>
@@ -73,7 +78,12 @@ const Feed = ({finalComment}) => {
                   : 
                   <>
                       <div className='feedUserInfo'>
-                          <img src={require('.././images/userIcon.png')} />
+                          {singlePost.img 
+                                  ? 
+                                    <img src={singlePost.img} alt=''></img>      
+                                  : 
+                                    <img style={{height:'70%'}}src={require('.././images/userIcon.png')} alt=''></img>
+                          }
                           <h2>@{singlePost.userName}</h2>
                       </div>
                       <h3>{singlePost.title.toUpperCase()}</h3>

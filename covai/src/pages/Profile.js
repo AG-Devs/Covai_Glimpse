@@ -1,16 +1,47 @@
-import React,{useRef} from 'react'
+import React,{useRef,useEffect, useState} from 'react'
 import './Profile.css'
 import {Link} from 'react-router-dom'
+import { AiFillDelete } from "react-icons/ai";
 
-const Profile = ({profileVideo,profileImage,setprofileImage,finalComment,navigate,userName}) => {
+const Profile = ({userDetailsArray,profileVideo,setprofileVideo,profileImage,setprofileImage,finalComment,navigate,userName,settoggle}) => {
+
+    useEffect(()=>{
+        settoggle(false)
+      },[])
+
+    const [profilePic,setprofilePic] = useState('')
+    const[tick,settick]=useState(false) 
 
     const inputRef2 = useRef()
+
+    const requiredObject1 = userDetailsArray.filter((single)=>(
+        single.userName === userName
+    ))
+
     const handleProfileClick = ()=>{
         inputRef2.current.click()
     }
     const handleProfileUpload = (e)=>{
-        setprofileImage(URL.createObjectURL(e.target.files[0]))
+        try{
+            const temp = e.target.files[0] ? e.target.files[0] : ''
+            setprofileImage(URL.createObjectURL(temp))
+            requiredObject1[0].profileImage = temp
+            setprofilePic(null)
+            settick(true)
+        }
+        catch(err){
+            handleDelete()
+        }
     }
+    const handleDelete=(()=>{      
+        setprofileImage(null)
+        setprofilePic(null)
+        settick(false)
+    })
+    const handlevideodelete=(()=>{      
+        setprofileVideo(null)
+        settick(false)
+      })
 
     const requiredObject = finalComment.filter((single)=>(
         single.userName === userName
@@ -23,10 +54,12 @@ const Profile = ({profileVideo,profileImage,setprofileImage,finalComment,navigat
                     <div className='profilePic'>
                             <div className='profileVideo'>
                                 {profileVideo ?  
-                                    <video muted autoPlay>
-                                        <source src={profileVideo}></source>
-                                    </video>
-                                : profileImage ? <img src={profileImage} alt=''></img>
+                                    <div className='profileVideoDisplay'>
+                                        <video muted autoPlay loop>
+                                            <source src={profileVideo}></source>
+                                        </video>
+                                    </div>
+                                : profileImage ? <img onClick={(e)=>handleProfileClick(e)} src={profileImage} alt=''></img>
                                 : <img style={{height:'100%'}} onClick={(e)=>handleProfileClick(e)} src={require('.././images/userIcon.png')} alt=''></img>}
                             </div>
                             <h1>@{userName}</h1>
@@ -35,12 +68,25 @@ const Profile = ({profileVideo,profileImage,setprofileImage,finalComment,navigat
                                     type='file'
                                     accept='image/jpg, image/png'
                                     ref={inputRef2}
+                                    value={profilePic}
                                     onChange={(e)=>{handleProfileUpload(e)}}
                                 ></input>
                             </div>
                     </div>
                     <div>
-                        <Link to='/home/editprofile' className='profileButtons'><p> Edit</p></Link>
+                        <Link to='/home/editprofile' className='profileButtons'><p onClick={()=>{settoggle(false)}}> Edit</p></Link>
+                        {profileImage ?
+                            <div  className='profilePicDelete'>
+                                    <button onClick={()=>{handleDelete()}}><AiFillDelete /></button>
+                            </div>
+                          :
+                          ''}
+                          {profileVideo?
+                         <div  className='profilePicDelete'>
+                                <button onClick={()=>{ handlevideodelete()}}><AiFillDelete /></button>
+                          </div>
+                          :
+                          ''}
                     </div>
             </div>
             <div className='userAnalytics'>

@@ -37,6 +37,31 @@
     align-items: center;
     justify-content: center;
 }
+.profileButtons > button {
+    width: 1%;
+    height: 1%;
+    border: none;
+    color: black;
+    background-color: transparent;
+}
+.profilePicDelete{
+    position: fixed;
+    top: 23%;
+    left: 65%;
+    color: black;
+}
+.profilePicDelete > button{
+    border: none;
+    height: 150%;
+    width: 150%;
+}
+.profilePicDelete > button :hover{
+    color: red;
+}
+.profilePicDelete > button > svg{
+    height: 130%;
+    width: 130%;
+}
 .profileVideo {
     height: 100%;
     width: 100%;
@@ -48,6 +73,23 @@
     height: 100%;
     width: 20%;
     border-radius: 100%;
+}
+.profileVideoDisplay{
+    height: 100%;
+    width: 20%;
+    border-radius: 100%;
+    border: 2px solid blueviolet;
+    z-index: 2;
+    overflow: hidden;
+}
+.profileVideoDisplay > video{
+    position: relative;
+    top: -35%;
+    left:-30%;
+    height: 170%;
+    width: 160%;
+    margin: 0%;
+    background-color: transparent;
 }
 .userDetails{
     position: fixed;

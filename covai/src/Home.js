@@ -4,7 +4,9 @@ import LeftSideBar from './homeComponents/LeftSideBar'
 import RightSideBar from './homeComponents/RightSideBar'
 import { Outlet } from 'react-router-dom'
 
-const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search}) => {
+const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search,profileImage,userDetailsArray}) => {
+
+  console.log(userDetailsArray)
 
   return (
     <div>
@@ -16,6 +18,7 @@ const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search}) => {
         <LeftSideBar 
             userName={userName}
             settoggle={settoggle}
+            profileImage={profileImage}
         />        
         {toggle ? <RightSideBar 
                       navigate={navigate} 

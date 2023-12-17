@@ -5,7 +5,7 @@ import { GrSend } from "react-icons/gr";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 
-const Post = ({finalComment,userName}) => {
+const Post = ({finalComment,userName,profileImage}) => {
 
   const[like,setLike]=useState(false)
   const[like1,setLike1]=useState(false)
@@ -68,7 +68,12 @@ const Post = ({finalComment,userName}) => {
       <div className='singlePostContent'>
          <div className='postContent'>
               <div className='userInfo'>
-                    <img src={require('.././images/userIcon.png')} />
+                    {profileImage 
+                        ? 
+                          <img src={profileImage} alt=''></img>      
+                        : 
+                          <img style={{height:'70%'}}src={require('.././images/userIcon.png')} alt=''></img>
+                    }
                     <h2>@{requiredObject[0].userName}</h2>
               </div>
               <h1>{requiredObject[0].title}</h1>
