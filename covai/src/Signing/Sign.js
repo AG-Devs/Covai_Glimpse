@@ -2,48 +2,74 @@ import React, { useEffect, useState } from 'react'
 import './Sign.css'
 import axios from 'axios'
 
-const Sign = ({userName,setuserName,Password,setPassword,setdata,navigate,userDetailsArray,setuserDetailsArray,mobilenumber,gmail,gender,age,profileImage,profileVideo}) => {
+const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,userDetailsArray,setuserDetailsArray,mobilenumber,gmail,gender,age,profileImage,profileVideo}) => {
 
     const [name,setname]=useState('')
     const [createPassword,setcreatePassword]=useState('')
     const [reEnterPassword,setreEnterPassword]=useState('')
+    const [checker,setchecker] = useState(true)
 
- /*useEffect(()=>{
-    fetch('http://localhost:3001/dashboard/user', {
-            method:"GET",
-        })
-        .then(async (res)=> await res.json())
-        .then( (data)=>{
-             console.log(data , "userData")
-             setdata(data.data)
-         
-        })
- })*/
-
-    const handleForm=(e)=>{
-        e.preventDefault()
-        if (createPassword === reEnterPassword)
-        {
-            /*axios.post('http://localhost:3001/app/signup',{
-                name:name,
-                password:createPassword
+    /*useEffect(()=>{
+        fetch('http://localhost:3001/dashboard/user', {
+                method:"GET",
             })
-            .then(res => console.log('server is working'));*/
+            .then(async (res)=> await res.json())
+            .then( (data)=>{
+                console.log(data , "userData")
+                setdata(data.data)
+            })
+    })*/
+
+    const handleForm=async(e)=>{
+        e.preventDefault()
+    if (createPassword === reEnterPassword)
+        {
             setuserName(name)
             setPassword(createPassword)
             const id = userDetailsArray.length ? userDetailsArray[userDetailsArray.length-1].id + 1 : 1 ;
             const temp = {id:id,userName:name,password:createPassword,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo}
             const updatedArray = [...userDetailsArray,temp]
             setuserDetailsArray(updatedArray)
-            setname('')
-            setcreatePassword('')
-            setreEnterPassword('')
-            navigate('/home')
+
+        try{
+            axios.post('http://localhost:3001/app/signup',{
+                    id,
+                    name,
+                    createPassword,
+                    mobilenumber,
+                    gender,
+                    age,
+                    gmail,
+                    profileImage,
+                    profileVideo                
+                })
+                .then(res => { 
+                        if (res.data === 'exist'){
+                            setname('')
+                            alert('User already exist')
+                        }
+                        else if (res.data === 'not exist'){
+                            setname('')
+                            setcreatePassword('')
+                            setreEnterPassword('')
+                            navigate('/home')
+                            alert('Thank you! You have been successfully signed up')
+                        }
+                })
+                .catch(e => {
+                    alert('Sorry! something went wrong')
+                })
+
         }
-        else {
-            alert("Password doesn't match")
+        catch(e){
+                    console.log(e)
         }
     }
+    else {
+        alert("Password doesn't match")
+    }
+
+}
     
 
   return (

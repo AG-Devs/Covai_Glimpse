@@ -5,7 +5,10 @@ const userController= require('../Controllers/userController.cjs')
 
 
 router.post('/signup',userController.createNewUser) 
+
 router.get('/user',userController.getAllUsers)
+
+router.post('/oneUser',userController.getOneUser) 
 
 
 

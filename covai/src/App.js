@@ -57,7 +57,10 @@ function App() {
                 Password={Password}
                 setPassword={setPassword}
                 navigate={navigate}
+
+                data={data}
                 setdata={setdata}
+
                 userDetailsArray={userDetailsArray}
                 setuserDetailsArray={setuserDetailsArray}
                 handleProfileVideo={handleProfileVideo}

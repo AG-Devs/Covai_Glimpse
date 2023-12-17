@@ -21,13 +21,32 @@ const Signin = ({setuserName,navigate,}) => {
         })
  })*/
 
-    const handleForm=(e)=>{
+    const handleForm=async (e)=>{
         e.preventDefault()  
-        setuserName(name)
-        setname('')
-        setenterPassword('')
-        navigate('/home')
+    try{
+          await axios.post('http://localhost:3001/login/oneUser',{name,enterPassword})
+          .then(res =>{
+            if (res.data === 'exist'){
+                setuserName(name)
+                setname('')
+                setenterPassword('')
+                navigate('/home')
+                alert('Successfully Verified')
+            }
+            else if (res.data === 'not exist'){
+                alert('Incorrect username / password')
+                setname('')
+                setenterPassword('')
+            }
+          })
+          .catch(e=>{
+                alert('Sorry! something went wrong')
+          })
     }
+    catch(e){
+        alert('error')
+    }
+}
     
   return (
     <div className='Signin'>

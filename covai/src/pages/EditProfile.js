@@ -1,6 +1,7 @@
 import React, { useEffect,useRef,useState} from 'react'
 import './EditProfile.css'
 import { AiFillDelete } from "react-icons/ai";
+import axios from 'axios'
 
 const EditProfile = ({tick,settick,userDetailsArray,userName,settoggle,profileVideo,setprofileVideo}) => {
 
@@ -20,7 +21,16 @@ const EditProfile = ({tick,settick,userDetailsArray,userName,settoggle,profileVi
                                                     single.userName === userName
                                                 ))
 
-  console.log(userDetailsArray)
+  const sendToDataBase = ()=>{
+        axios.post('http://localhost:3001/app/profileedit',{
+               mobilenumber: requiredObject[0].mobilenumber,
+                gender:requiredObject[0].gender,
+                age: requiredObject[0].age,
+                gmail:requiredObject[0].gmail,
+                profileVideo:requiredObject[0].profileVideo
+            })
+            .then(res => console.log('server is working'));
+  }
 const handleForm1=(e)=>{
     e.preventDefault()
     requiredObject[0].mobilenumber = mobilenumber1
@@ -28,6 +38,7 @@ const handleForm1=(e)=>{
     requiredObject[0].age = age1
     requiredObject[0].gmail = gmail1
     requiredObject[0].profileVideo = profileVideo
+    sendToDataBase()
 }
 const handleVideo = (e)=>{
   try{
