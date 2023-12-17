@@ -10,7 +10,7 @@ const Signin = ({setuserName,navigate,}) => {
     const [enterPassword,setenterPassword]=useState('')
 
  /*useEffect(()=>{
-    fetch('http://localhost:3001/dashboard/user', {
+    fetch('https://covai-glimpse.onrender.com/dashboard/user', {
             method:"GET",
         })
         .then(async (res)=> await res.json())
@@ -24,7 +24,7 @@ const Signin = ({setuserName,navigate,}) => {
     const handleForm=async (e)=>{
         e.preventDefault()  
     try{
-          await axios.post('http://localhost:3001/login/oneUser',{name,enterPassword})
+          await axios.post('https://covai-glimpse.onrender.com/login/oneUser',{name,enterPassword})
           .then(res =>{
             if (res.data === 'exist'){
                 setuserName(name)

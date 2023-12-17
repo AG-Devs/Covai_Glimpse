@@ -10,7 +10,7 @@ const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,u
     const [checker,setchecker] = useState(true)
 
     /*useEffect(()=>{
-        fetch('http://localhost:3001/dashboard/user', {
+        fetch('https://covai-glimpse.onrender.com/dashboard/user', {
                 method:"GET",
             })
             .then(async (res)=> await res.json())
@@ -32,7 +32,7 @@ const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,u
             setuserDetailsArray(updatedArray)
 
         try{
-            axios.post('http://localhost:3001/app/signup',{
+            axios.post('https://covai-glimpse.onrender.com/app/signup',{
                     id,
                     name,
                     createPassword,
