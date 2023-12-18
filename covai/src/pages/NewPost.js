@@ -21,7 +21,7 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeC
         const postComment = [{id:'1',userName:userName,Comment:'hi'}]
 
         try{
-            axios.post('http://localhost:3001/new/post',{
+            axios.post('https://covai-glimpse.onrender.com/new/post',{
                                     id,
                                     userName,
                                     title,

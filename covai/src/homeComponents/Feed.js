@@ -9,7 +9,7 @@ const Feed = ({finalComment,setfinalComment,profileImage}) => {
   useEffect(()=>{
     weatherApi()
 
-        fetch('http://localhost:3001/display/feed', {
+        fetch('https://covai-glimpse.onrender.com/display/feed', {
                 method:"GET",
             })
             .then(async (res)=> await res.json())
