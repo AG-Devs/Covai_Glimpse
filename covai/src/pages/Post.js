@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react'
 import './Post.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { GrSend } from "react-icons/gr";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
 
 const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker}) => {
@@ -14,6 +15,7 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
   const[disliked,setdisliked]=useState(true)
 
   const [Comment,setComment] = useState('')
+  const navigateTo = useNavigate()
 
   const id = useParams()
   const Id = id.id
@@ -27,12 +29,34 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
   const textbox=useRef(null)  
 
   const handleLike=(()=>{
+      const name1 = requiredObject[0].userName
       const result= liked ? requiredObject[0].likeCount+1 : requiredObject[0].likeCount === 0 ?  0 : requiredObject[0].likeCount-1
       const result2 = requiredObject[0].disLikeCount === 0 ? 0 : requiredObject[0].disLikeCount-1
       requiredObject[0].disLikeCount = result2
       setliked(!liked)
       setdisliked(true)
       requiredObject[0].likeCount = result
+      if (liked){ 
+        try{
+        axios.post('https://covai-glimpse.onrender.com/like/liked',{
+                            name1,
+                            result    
+            })
+            .then(res => { 
+                    if (res.data === 'done'){
+                        alert('done')
+                    }
+                    else if (res.data === 'error'){                            
+                        alert('Sorry! something went wrong')
+                    }
+            })
+            .catch(e => {
+                alert(e)
+            })
+      }
+      catch(e){
+            console.log('err')
+      }}
       setLike(!like);
       setLike1(false)
   })
@@ -46,9 +70,6 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
       setLike1(!like1);
       setLike(false)
   })
-  
-
-
 
   const handleComment = (e)=>{
       textbox.current.style.height="32px";
@@ -87,6 +108,32 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
     setComment('')
   }
 
+  const handleDeletePost =()=>{
+    const name1 = requiredObject[0].userName
+    const id = Number(requiredObject[0].id)
+    try{
+      axios.post('http://localhost:3001/currentPost/delete',{
+                          name1,
+                          id  
+          })
+          .then(res => { 
+                  if (res.data === 'done'){
+                  }
+                  else if (res.data === 'error'){                            
+                      alert('Sorry! something went wrong')
+                  }
+          })
+          .catch(e => {
+              alert(e)
+          })
+    }
+    catch(e){
+          console.log('err')
+    }
+    setstateChecker(!stateChecker)
+    navigateTo('/home')
+  }
+
   return (
     <div className='singlePost'>
       <div className='singlePostContent'>
@@ -99,6 +146,11 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
                           <img style={{height:'70%'}}src={require('.././images/userIcon.png')} alt=''></img>
                     }
                     <h2>@{requiredObject[0].userName}</h2>
+                    { userName === requiredObject[0].userName ? 
+                          <div className='postDeleteButton'>
+                              <button onClick={()=>{handleDeletePost()}}><AiFillDelete /></button> 
+                          </div>
+                    :''}
               </div>
               <h1>{requiredObject[0].title}</h1>
               <p>{requiredObject[0].message}</p>

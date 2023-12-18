@@ -58,6 +58,28 @@
     position: relative;
     left: 20%;
 }
+.postDeleteButton{
+    position: fixed;
+    top: 23%;
+    left: 73%;
+    color: black;
+    background-color: white;
+}
+.postDeleteButton > button{
+    border: none;
+    height: 150%;
+    width: 150%;
+    background-color: white;
+}
+.postDeleteButton > button :hover{
+    color: red;
+    background-color: white;
+}
+.postDeleteButton > button > svg{
+    height: 130%;
+    width: 130%;
+    background-color: white;
+}
 .interactionSession{
     height: 50%;
     width: 90%;

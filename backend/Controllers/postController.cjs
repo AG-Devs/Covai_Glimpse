@@ -38,6 +38,30 @@ const updatePost = async (req,res)=>{
         res.json('error')
     }
 }
+const updateLike = async (req,res)=>{
+    const {name1,result} = req.body
+    try{
+        await Post.updateOne({userName:name1},{
+            $set:{
+                likeCount:result
+            }
+        })
+        res.json('done')
+    }
+    catch(err){
+        res.json('error')
+    }
+}
+
+const deletePost = async (req,res)=>{
+    const {name1,id} = req.body
+    try{
+        await Post.deleteOne({id:id,userName:name1})
+    }
+    catch(err){
+        res.json('error')
+    }
+}
 
 const getAllPosts = async (req,res)=>{
     try{
@@ -52,5 +76,7 @@ const getAllPosts = async (req,res)=>{
 module.exports = {
         newPost,
         updatePost,
+        updateLike,
+        deletePost,
         getAllPosts
 }

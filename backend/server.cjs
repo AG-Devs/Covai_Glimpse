@@ -18,7 +18,11 @@ app.use("/login",routeUrls)
 
 app.use("/new",routeUrls)
 app.use("/post",routeUrls)
+app.use("/currentPost",routeUrls)
+app.use("/like",routeUrls)
 
 app.use("/display",routeUrls)
+
+app.use("/single",routeUrls)
 
 app.listen( process.env.PORT || 3001,()=>{console.log('server is up')})

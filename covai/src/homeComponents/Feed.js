@@ -16,6 +16,7 @@ const Feed = ({finalComment,setfinalComment,profileImage,stateChecker}) => {
             .then( (data)=>{
                 setfinalComment(data.data)
             })
+            
   },[stateChecker])
 
   const city_name = 'Coimbatore'

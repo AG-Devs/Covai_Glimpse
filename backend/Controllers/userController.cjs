@@ -34,8 +34,25 @@ const createNewUser = async(req,res)=>{
             res.json('Sorry! something went wrong')
         }
     }
+
+    const getSingleUser = async(req,res) => {
+        const {userName} = req.body 
+        try{
+            const data = await User.findOne({userName:userName})
+            if (data){
+                res.send({data:data})
+            }
+            else{
+                res.json('not exist')
+            }
+        }
+        catch(e){
+            res.json('error')
+        }
+    }
+
  
-const getOneUser = async (req,res) => {
+const getOneUser = async(req,res) => {
     const {name,enterPassword} = req.body 
     try{
         const checker = await User.findOne({userName:name,password:enterPassword})
@@ -64,5 +81,6 @@ const getAllUsers = async (req,res)=>{
 module.exports = {
     createNewUser,
     getOneUser,
-    getAllUsers
+    getAllUsers,
+    getSingleUser
    }

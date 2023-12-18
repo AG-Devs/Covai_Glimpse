@@ -43,7 +43,7 @@ function App() {
 
 
   const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',title:"welcome",img:null,message:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
-  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo}])
+  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo,totalPosts:totalPosts,totalLikes:totalLikes,followers:followers}])
 
   return (
     <div className="App">
@@ -111,6 +111,7 @@ function App() {
                                                     profileVideo={profileVideo}
                                                     settoggle={settoggle}
                                                     userDetailsArray={userDetailsArray}
+                                                    setuserDetailsArray={setuserDetailsArray}
                                                 />} 
                   />
                  <Route path='notification' element={<Notification />} />

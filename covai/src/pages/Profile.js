@@ -2,12 +2,31 @@ import React,{useRef,useEffect, useState} from 'react'
 import './Profile.css'
 import {Link} from 'react-router-dom'
 import { AiFillDelete } from "react-icons/ai";
+import axios from 'axios';
 
-const Profile = ({userDetailsArray,profileVideo,setprofileVideo,profileImage,setprofileImage,finalComment,navigate,userName,settoggle}) => {
+const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage,setprofileImage,finalComment,navigate,userName,settoggle,totalLikes,totalPosts,followers}) => {
 
+    const [filteredUser,setfilteredUser]=useState({})
     useEffect(()=>{
         settoggle(false)
-      },[])
+        try{
+            axios.post('http://localhost:3001/single/profile',{userName})
+            .then(res =>{
+              if (res.data){
+                  setfilteredUser(res.data.data)
+              }
+              else if (res.data === 'not exist'){
+                  alert('Incorrect username / password')
+              }
+            })
+            .catch(e=>{
+                  alert('Sorry! something went wrong')
+            })
+      }
+      catch(e){
+          alert('error')
+      }
+     },[])
 
     const [profilePic,setprofilePic] = useState('')
     const[tick,settick]=useState(false) 
@@ -91,15 +110,15 @@ const Profile = ({userDetailsArray,profileVideo,setprofileVideo,profileImage,set
             </div>
             <div className='userAnalytics'>
                 <div className='analytics'>
-                    <h2>100</h2>
+                    <h2>{filteredUser.totalPosts}</h2>
                     <h3>Posts</h3>
                 </div >
                 <div className='analytics'>
-                    <h2>100</h2>
+                    <h2>{filteredUser.followers}</h2>
                     <h3>Followers</h3>
                 </div>
                 <div className='analytics'>
-                    <h2>100</h2>
+                    <h2>{filteredUser.totalLikes}</h2>
                     <h3>Likes</h3>
                 </div>
             </div>
