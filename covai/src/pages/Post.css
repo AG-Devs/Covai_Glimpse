@@ -50,6 +50,7 @@
 }
 .userInfo > h2 {
     height: 100%;
+    color: blueviolet;
 }
 .postImg{
     height: 70%;

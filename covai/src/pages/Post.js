@@ -112,7 +112,7 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
                     </div>
                     <div className={like1?'buttons1':'buttons'} onClick={(()=>{handleDisLike()})}>  
                         <AiFillDislike /> 
-                        <p>{requiredObject[0].disLikeCount}</p>
+                        <p>{requiredObject[0].dislikeCount}</p>
                     </div>
               </div>
               <div className='commentSession'>
