@@ -18,8 +18,9 @@ const Post = ({finalComment,userName,profileImage}) => {
   const Id = id.id
 
   const requiredObject = finalComment.filter((post)=>(
-    Number(Id) === post.id
+    Number(Id) === Number(post.id)
   ))
+  
   const temp2 = requiredObject[0].postComment
 
   const textbox=useRef(null)  
@@ -77,7 +78,7 @@ const Post = ({finalComment,userName,profileImage}) => {
                     <h2>@{requiredObject[0].userName}</h2>
               </div>
               <h1>{requiredObject[0].title}</h1>
-              <p>{requiredObject[0].content}</p>
+              <p>{requiredObject[0].message}</p>
               { requiredObject[0].img ? <img className='postImg' src={requiredObject[0].img} alt='' /> : ''}
          </div>
          <div className='interactionSession'>
@@ -108,7 +109,7 @@ const Post = ({finalComment,userName,profileImage}) => {
                   </form>
                   <div className='comments'>
                       <div className='commentContent'>
-                            {(requiredObject[0].postComment).map((single)=>(
+                            {(requiredObject[0].postComment).length ? (requiredObject[0].postComment).map((single)=>(
                               <div className='commentDisplay'>
                                 <div className='commentUser'>
                                   <img src={require('.././images/userIcon.png')} alt='' />
@@ -116,7 +117,7 @@ const Post = ({finalComment,userName,profileImage}) => {
                                 </div>
                                   <p>{single.Comment}</p>
                               </div>    
-                            ))}
+                            )):'No comments'}
                       </div>
                   </div>
               </div>
