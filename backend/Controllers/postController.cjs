@@ -24,6 +24,21 @@ const newPost= async (req,res)=>{
     }
 }
 
+const updatePost = async (req,res)=>{
+    const {name1,updatedtemp2} = req.body
+    try{
+        await Post.updateOne({userName:name1},{
+            $set:{
+                postComment:updatedtemp2
+            }
+        })
+        res.json('done')
+    }
+    catch(err){
+        res.json('error')
+    }
+}
+
 const getAllPosts = async (req,res)=>{
     try{
         const data = await Post.find({})
@@ -36,5 +51,6 @@ const getAllPosts = async (req,res)=>{
 
 module.exports = {
         newPost,
+        updatePost,
         getAllPosts
 }

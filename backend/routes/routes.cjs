@@ -9,6 +9,7 @@ router.get('/user',userController.getAllUsers)
 router.post('/oneUser',userController.getOneUser)
 
 router.post('/post',postController.newPost) 
+router.post('/update',postController.updatePost) 
 router.get('/feed',postController.getAllPosts) 
 
 

@@ -17,9 +17,8 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeC
 
     const handleNewSubmit=(e)=>{
         e.preventDefault()
-        const id = finalComment.length ? Number(finalComment[finalComment.length-1].id)+1 : 1 ;
-        
-        const postComment = [{userName:userName,Comment:'hi'}]
+        const id = finalComment.length ? Number(finalComment[finalComment.length-1].id)+1 : 1 ;   
+        const postComment = [{id1:1,userName:userName,Comment:'hi'}]
 
         try{
             axios.post('https://covai-glimpse.onrender.com/new/post',{
@@ -47,7 +46,7 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeC
                 .catch(e => {
                     alert(e)
                 })
-            setstateChecker(!stateChecker)
+        setstateChecker(!stateChecker)
 
         }
         catch(e){

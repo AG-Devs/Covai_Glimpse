@@ -16,7 +16,6 @@ const Feed = ({finalComment,setfinalComment,profileImage,stateChecker}) => {
             .then( (data)=>{
                 setfinalComment(data.data)
             })
-        console.log('hi')
   },[stateChecker])
 
   const city_name = 'Coimbatore'
@@ -29,7 +28,7 @@ const Feed = ({finalComment,setfinalComment,profileImage,stateChecker}) => {
       setweather(weather.data)
     }
     catch(err){
-      console.log(err)
+      console.log('404')
     }
   }
 

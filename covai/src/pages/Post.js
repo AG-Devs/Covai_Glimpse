@@ -4,8 +4,9 @@ import { useParams } from 'react-router-dom'
 import { GrSend } from "react-icons/gr";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
+import axios from 'axios';
 
-const Post = ({finalComment,userName,profileImage}) => {
+const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker}) => {
 
   const[like,setLike]=useState(false)
   const[like1,setLike1]=useState(false)
@@ -60,6 +61,28 @@ const Post = ({finalComment,userName,profileImage}) => {
     const text = {id1:id1,userName:userName,Comment:Comment}
     const updatedtemp2 = [...temp2,text]
     requiredObject[0].postComment = updatedtemp2
+    const name1 = requiredObject[0].userName
+    try{
+      axios.post('http://localhost:3001/post/update',{
+                          name1,
+                          updatedtemp2    
+          })
+          .then(res => { 
+                  if (res.data === 'done'){
+                      alert('done')
+                  }
+                  else if (res.data === 'error'){                            
+                      alert('Sorry! something went wrong')
+                  }
+          })
+          .catch(e => {
+              alert(e)
+          })
+    }
+    catch(e){
+          console.log('err')
+    }
+    setstateChecker(!stateChecker)
     textbox.current.style.height="32px";
     setComment('')
   }

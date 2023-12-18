@@ -11,9 +11,14 @@ mongoose.connect(process.env.MONGOOSE_URL)
 
 app.use(cors())
 app.use(express.json())
+
 app.use("/app",routeUrls)
 app.use("/dashboard",routeUrls)
 app.use("/login",routeUrls)
+
 app.use("/new",routeUrls)
+app.use("/post",routeUrls)
+
 app.use("/display",routeUrls)
+
 app.listen( process.env.PORT || 3001,()=>{console.log('server is up')})

@@ -132,6 +132,8 @@ function App() {
                                                           setfinalComment={setfinalComment}
                                                           userName={userName}
                                                           profileImage={profileImage}
+                                                          stateChecker={stateChecker}
+                                                          setstateChecker={setstateChecker}
                                                       />} 
                  />
                 <Route path='editprofile' element={<EditProfile 
