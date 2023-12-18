@@ -9,12 +9,10 @@ const Feed = ({finalComment,setfinalComment,profileImage,stateChecker}) => {
   useEffect(()=>{
     weatherApi()
 
-        fetch('https://covai-glimpse.onrender.com/display/feed', {
-                method:"GET",
-            })
-            .then(async (res)=> await res.json())
-            .then( (data)=>{
-                setfinalComment(data.data)
+        axios.get('https://covai-glimpse.onrender.com/display/feed')
+            .then( (res)=>{
+                setfinalComment(res.data.data)
+                console.log('hi')
             })
   },[stateChecker])
 
