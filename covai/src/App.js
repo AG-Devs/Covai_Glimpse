@@ -28,6 +28,8 @@ function App() {
   const[age,setage]=useState(null)
   const[profileVideo,setprofileVideo]=useState(null)
   const[profileImage,setprofileImage]=useState(null)
+  const[likeCount,setlikeCount]=useState(null)
+  const[dislikeCount,setdislikeCount]=useState(null)
   const[tick,settick]=useState(false)
 
   const handleProfileVideo=((e)=>{
@@ -36,7 +38,7 @@ function App() {
   })
 
 
-  const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',title:"welcome",img:null,content:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
+  const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',title:"welcome",img:null,message:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
   const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo}])
 
   return (
@@ -85,9 +87,8 @@ function App() {
               />
             }>
                  <Route index element={<Feed 
-                                          finalComment={finalComment.filter((single)=>(
-                                                          single.title.toLowerCase().includes(search.toLowerCase())
-                                                       ))}
+                                          finalComment={finalComment}
+                                          setfinalComment = {setfinalComment}
                                           profileImage={profileImage}
                                         />} 
                  /> 
@@ -109,6 +110,8 @@ function App() {
                                                     settoggle={settoggle}
                                                     finalComment={finalComment}
                                                     setfinalComment={setfinalComment}
+                                                    dislikeCount = {dislikeCount}
+                                                    likeCount = {likeCount}
                                                 />} 
                  />
                  <Route path='touristspots' element={<TouristPlaces settoggle={settoggle} />} />

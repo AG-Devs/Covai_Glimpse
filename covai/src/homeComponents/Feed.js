@@ -4,10 +4,18 @@ import axios from 'axios'
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
-const Feed = ({finalComment,profileImage}) => {
+const Feed = ({finalComment,setfinalComment,profileImage}) => { 
 
   useEffect(()=>{
     weatherApi()
+
+        fetch('http://localhost:3001/display/feed', {
+                method:"GET",
+            })
+            .then(async (res)=> await res.json())
+            .then( (data)=>{
+                setfinalComment(data.data)
+            })
   },[])
 
   const city_name = 'Coimbatore'
@@ -58,7 +66,7 @@ const Feed = ({finalComment,profileImage}) => {
           {finalComment.map((singlePost)=>(
             <Link to={`/home/post/${singlePost.id}`}>
               <div className='post'>
-                {(singlePost.content).length > 270 ? 
+                {(singlePost.message).length > 270 ? 
                   <>
                       <div className='feedUserInfo'>
                           {singlePost.img 

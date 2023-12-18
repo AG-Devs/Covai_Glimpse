@@ -48,15 +48,14 @@ const getOneUser = async (req,res) => {
     }
 }
 
-
-const getAllUsers= async (req,res)=>{
+const getAllUsers = async (req,res)=>{
     try{
-    const user = await User.find({});
-    res.send({data:user})
+        const data = await User.find({})
+        res.send({data:data})
     }
-    catch(err){
-        console.log(err)
-    }
+    catch(e){
+        res.json('error')
+    }   
 }
 
 module.exports = {

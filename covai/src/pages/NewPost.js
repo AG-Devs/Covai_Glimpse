@@ -2,29 +2,57 @@ import React, { useRef, useState } from 'react'
 import './NewPost.css'
 import { format } from 'date-fns'
 import { AiFillDelete } from "react-icons/ai";
+import axios from 'axios'
 
 
-const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName}) => {
+const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeCount,dislikeCount}) => {
 
     const [title,settitle]= useState('')
     const [message,setmessage]=useState('')
-    const [img,setimg]=useState(null)
-    const [uploadImage,setuploadImage]=useState(null)
+    const [img,setimg]=useState('')
+    const [uploadImage,setuploadImage]=useState('')
     const[tick,settick]=useState(false)
-
     
     const dateTime = format(new Date(), 'dd-MM-yyyy/HH-mm')
 
     const handleNewSubmit=(e)=>{
         e.preventDefault()
-        const id = finalComment.length ? finalComment[finalComment.length-1].id + 1 : 1 ;
-        const temp = {id:id,userName:userName,title:title,content:message, img:img ,time:dateTime,likeCount:0,disLikeCount:0,postComment:[{id1:0,userName:userName,Comment:'hi'}]}
-        const updateTemp = [...finalComment,temp]
-        setfinalComment(updateTemp)
-        settitle('')
-        setmessage('')
-        navigate('/home')
+        const id = '1' ;
+        const postComment = [{id:'1',userName:userName,Comment:'hi'}]
+
+        try{
+            axios.post('http://localhost:3001/new/post',{
+                                    id,
+                                    userName,
+                                    title,
+                                    message,
+                                    img,
+                                    dateTime,
+                                    likeCount,
+                                    dislikeCount,
+                                    postComment
+                })
+                .then(res => { 
+                        if (res.data === 'done'){
+                            alert('done')
+                            settitle('')
+                            setmessage('')
+                            navigate('/home')
+                        }
+                        else if (res.data === 'error'){                            
+                            alert('Sorry! something went wrong')
+                        }
+                })
+                .catch(e => {
+                    alert(e)
+                })
+
+        }
+        catch(e){
+                    console.log(e)
+        }
     }
+
     const handleImage = (e)=>{
         try{
             const temp = e.target.files[0] ? e.target.files[0] : ''

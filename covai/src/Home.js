@@ -6,8 +6,6 @@ import { Outlet } from 'react-router-dom'
 
 const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search,profileImage,userDetailsArray}) => {
 
-  console.log(userDetailsArray)
-
   return (
     <div>
         <Header 
