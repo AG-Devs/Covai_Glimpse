@@ -16,7 +16,7 @@ const Feed = ({finalComment,setfinalComment,profileImage}) => {
             .then( (data)=>{
                 setfinalComment(data.data)
             })
-  },[])
+  })
 
   const city_name = 'Coimbatore'
   const [weather,setweather]=useState('')
