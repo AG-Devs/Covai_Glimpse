@@ -63,7 +63,7 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
     requiredObject[0].postComment = updatedtemp2
     const name1 = requiredObject[0].userName
     try{
-      axios.post('http://localhost:3001/post/update',{
+      axios.post('https://covai-glimpse.onrender.com/post/update',{
                           name1,
                           updatedtemp2    
           })
