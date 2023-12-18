@@ -4,7 +4,7 @@ import axios from 'axios'
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
-const Feed = ({finalComment,setfinalComment,profileImage}) => { 
+const Feed = ({finalComment,setfinalComment,profileImage,stateChecker}) => { 
 
   useEffect(()=>{
     weatherApi()
@@ -16,7 +16,8 @@ const Feed = ({finalComment,setfinalComment,profileImage}) => {
             .then( (data)=>{
                 setfinalComment(data.data)
             })
-  })
+        console.log('hi')
+  },[stateChecker])
 
   const city_name = 'Coimbatore'
   const [weather,setweather]=useState('')

@@ -5,7 +5,7 @@ import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios'
 
 
-const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeCount,dislikeCount}) => {
+const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeCount,dislikeCount,stateChecker,setstateChecker}) => {
 
     const [title,settitle]= useState('')
     const [message,setmessage]=useState('')
@@ -47,6 +47,7 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeC
                 .catch(e => {
                     alert(e)
                 })
+            setstateChecker(!stateChecker)
 
         }
         catch(e){

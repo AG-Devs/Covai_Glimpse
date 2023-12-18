@@ -31,6 +31,7 @@ function App() {
   const[likeCount,setlikeCount]=useState(null)
   const[dislikeCount,setdislikeCount]=useState(null)
   const[tick,settick]=useState(false)
+  const [stateChecker,setstateChecker]=useState(false)
 
   const handleProfileVideo=((e)=>{
     setprofileVideo(URL.createObjectURL(e.target.files[0]))
@@ -87,9 +88,12 @@ function App() {
               />
             }>
                  <Route index element={<Feed 
-                                          finalComment={finalComment}
+                                          finalComment={finalComment.filter((single)=>(
+                                              single.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+                                          ))}
                                           setfinalComment = {setfinalComment}
                                           profileImage={profileImage}
+                                          stateChecker={stateChecker}
                                         />} 
                  /> 
                  <Route path='profile' element={<Profile 
@@ -112,6 +116,8 @@ function App() {
                                                     setfinalComment={setfinalComment}
                                                     dislikeCount = {dislikeCount}
                                                     likeCount = {likeCount}
+                                                    stateChecker={stateChecker}
+                                                    setstateChecker={setstateChecker}
                                                 />} 
                  />
                  <Route path='touristspots' element={<TouristPlaces settoggle={settoggle} />} />
