@@ -19,7 +19,6 @@ app.use("/login",routeUrls)
 app.use("/new",routeUrls)
 app.use("/post",routeUrls)
 app.use("/currentPost",routeUrls)
-app.use("/like",routeUrls)
 
 app.use("/display",routeUrls)
 

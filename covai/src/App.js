@@ -36,6 +36,9 @@ function App() {
   const[tick,settick]=useState(false)
   const [stateChecker,setstateChecker]=useState(false)
 
+  const[like,setLike]=useState(false)
+  const[like1,setLike1]=useState(false)
+
   const handleProfileVideo=((e)=>{
     setprofileVideo(URL.createObjectURL(e.target.files[0]))
     settick(true)
@@ -135,6 +138,10 @@ function App() {
                                                           profileImage={profileImage}
                                                           stateChecker={stateChecker}
                                                           setstateChecker={setstateChecker}
+                                                          like={like}
+                                                          setLike={setLike}
+                                                          like1={like1}
+                                                          setLike1={setLike1}
                                                       />} 
                  />
                 <Route path='editprofile' element={<EditProfile 

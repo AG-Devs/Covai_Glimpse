@@ -7,10 +7,9 @@ import { AiFillDislike } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
 
-const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker}) => {
+const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,like,setLike,like1,setLike1}) => {
 
-  const[like,setLike]=useState(false)
-  const[like1,setLike1]=useState(false)
+  
   const[liked,setliked]=useState(true)
   const[disliked,setdisliked]=useState(true)
 
@@ -28,69 +27,22 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
 
   const textbox=useRef(null)  
 
-  const handleLike=(()=>{
-      const name1 = requiredObject[0].userName
-      const result= liked ? requiredObject[0].likeCount+1 : requiredObject[0].likeCount === 0 ?  0 : requiredObject[0].likeCount-1
-      const result2 = requiredObject[0].disLikeCount === 0 ? 0 : requiredObject[0].disLikeCount-1
-      requiredObject[0].disLikeCount = result2
-      setliked(!liked)
-      setdisliked(true)
-      requiredObject[0].likeCount = result
-      if (liked){ 
-        try{
-        axios.post('https://covai-glimpse.onrender.com/like/liked',{
-                            name1,
-                            result    
-            })
-            .then(res => { 
-                    if (res.data === 'done'){
-                        alert('done')
-                    }
-                    else if (res.data === 'error'){                            
-                        alert('Sorry! something went wrong')
-                    }
-            })
-            .catch(e => {
-                alert(e)
-            })
-      }
-      catch(e){
-            console.log('err')
-      }}
-      setLike(!like);
-      setLike1(false)
-  })
-  const handleDisLike=(()=>{
-      const result= disliked ? requiredObject[0].disLikeCount+1 : requiredObject[0].disLikeCount === 0 ?  0 : requiredObject[0].disLikeCount-1
-      const result2 = requiredObject[0].likeCount === 0 ? 0 : requiredObject[0].likeCount-1
-      setdisliked(!disliked)
-      setliked(true)
-      requiredObject[0].disLikeCount = result
-      requiredObject[0].likeCount = result2
-      setLike1(!like1);
-      setLike(false)
-  })
+  console.log(requiredObject[0])
 
-  const handleComment = (e)=>{
-      textbox.current.style.height="32px";
-      textbox.current.style.height=`${textbox.current.scrollHeight}px`;
-      setComment(e.target.value)
-  }
-  const handleCommentSubmit = (e)=>{
-    e.preventDefault()
-    const id1 = temp2.length ? temp2[temp2.length-1].id1 + 1 : 1 ;
-    const text = {id1:id1,userName:userName,Comment:Comment}
-    const updatedtemp2 = [...temp2,text]
-    requiredObject[0].postComment = updatedtemp2
+  const updateInteraction=()=>{
     const name1 = requiredObject[0].userName
+    const like = requiredObject[0].likeCount
+    const dislike = requiredObject[0].dislikeCount
+    const postComment = requiredObject[0].postComment
     try{
-      axios.post('https://covai-glimpse.onrender.com/post/update',{
+      axios.post('http://localhost:3001/post/update',{
                           name1,
-                          updatedtemp2    
+                          like,
+                          dislike,
+                          postComment   
           })
           .then(res => { 
                   if (res.data === 'done'){
-                      alert('done')
                   }
                   else if (res.data === 'error'){                            
                       alert('Sorry! something went wrong')
@@ -103,9 +55,47 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker})
     catch(e){
           console.log('err')
     }
-    setstateChecker(!stateChecker)
+  }
+
+  const handleLike=()=>{
+      const result= liked ? requiredObject[0].likeCount+1 : requiredObject[0].likeCount === 0 ?  0 : requiredObject[0].likeCount-1
+      const result2 = requiredObject[0].dislikeCount === 0 ? 0 : requiredObject[0].dislikeCount-1
+      requiredObject[0].dislikeCount = result2
+      setliked(!liked)
+      setdisliked(true)
+      requiredObject[0].likeCount = result
+      setLike(!like);
+      setLike1(false)
+      updateInteraction()
+  }
+
+  const handleDisLike=()=>{
+      const result= disliked ? requiredObject[0].dislikeCount+1 : requiredObject[0].dislikeCount === 0 ?  0 : requiredObject[0].dislikeCount-1
+      const result2 = requiredObject[0].likeCount === 0 ? 0 : requiredObject[0].likeCount-1
+      requiredObject[0].likeCount = result2
+      setdisliked(!disliked)
+      setliked(true)
+      requiredObject[0].dislikeCount = result
+      setLike1(!like1);
+      setLike(false)
+      updateInteraction()
+  }
+
+  const handleComment = (e)=>{
+      textbox.current.style.height="32px";
+      textbox.current.style.height=`${textbox.current.scrollHeight}px`;
+      setComment(e.target.value)
+  }
+  const handleCommentSubmit = (e)=>{
+    e.preventDefault()
+    const id1 = temp2.length ? temp2[temp2.length-1].id1 + 1 : 1 ;
+    const text = {id1:id1,userName:userName,Comment:Comment}
+    const updatedtemp2 = [...temp2,text]
+    requiredObject[0].postComment = updatedtemp2
+    updateInteraction()
     textbox.current.style.height="32px";
     setComment('')
+
   }
 
   const handleDeletePost =()=>{
