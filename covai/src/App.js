@@ -30,6 +30,9 @@ function App() {
   const[profileImage,setprofileImage]=useState(null)
   const[likeCount,setlikeCount]=useState(null)
   const[dislikeCount,setdislikeCount]=useState(null)
+  const[totalPosts,settotalPosts]=useState(0)
+  const[followers,setfollowers]=useState(0)
+  const[totalLikes,settotalLikes]=useState(0)
   const[tick,settick]=useState(false)
   const [stateChecker,setstateChecker]=useState(false)
 
@@ -71,6 +74,9 @@ function App() {
                 gmail={gmail}
                 gender={gender}
                 age={age}
+                totalPosts={totalPosts}
+                totalLikes={totalLikes}
+                followers={followers}
               />
             }
         />

@@ -9,7 +9,10 @@ const signupSchema= new mongoose.Schema({
     age:{type:String,required:false},
     gmail:{type:String,required:false},
     profileImage:{type:String,required:false},
-    profileVideo:{type:String,required:false}
+    profileVideo:{type:String,required:false},
+    totalPosts:{type:Number,required:false},
+    totalLikes:{type:Number,required:false},
+    followers:{type:Number,required:false}
 })
 
 module.exports= mongoose.model('users',signupSchema)
