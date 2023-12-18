@@ -2,7 +2,7 @@ const User=require('../models/SignModel.cjs')
 
 const createNewUser = async(req,res)=>{
         
-            const {id,name,createPassword,mobilenumber,gender,age,gmail,profileImage,profileVideo,totalPosts,totalLikes,followers} = req.body
+            const {id,name,createPassword,mobilenumber,gender,age,gmail,profileImage,profileVideo,totalPosts,totalLikes,followers,likedPosts,dislikedPosts,commentedPosts} = req.body
             
             const data= {
                         id:id,
@@ -16,7 +16,10 @@ const createNewUser = async(req,res)=>{
                         profileVideo:profileVideo,
                         totalPosts:totalPosts,
                         totalLikes:totalLikes,
-                        followers:followers
+                        followers:followers,
+                        likedPosts:likedPosts,
+                        dislikedPosts:dislikedPosts,
+                        commentedPosts:commentedPosts
                     }
 
         try {

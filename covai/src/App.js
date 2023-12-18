@@ -12,6 +12,7 @@ import TouristPlaces from './pages/TouristPlaces';
 import Post from './pages/Post';
 import EditProfile from './pages/EditProfile' 
 import TermsAndConditions from './TermsAndConditions';
+import VProfile from './pages/VProfile';
 
 function App() {
 
@@ -33,6 +34,9 @@ function App() {
   const[totalPosts,settotalPosts]=useState(0)
   const[followers,setfollowers]=useState(0)
   const[totalLikes,settotalLikes]=useState(0)
+  const[likedPosts,setlikedPosts]=useState([{id_i:0,postId:0}])
+  const[dislikedPosts,setdislikedPosts]=useState([{id_i:0,postId:0}])
+  const[commentedPosts,setcommentedPosts]=useState([{id_i:0,postId:0}])
   const[tick,settick]=useState(false)
   const [stateChecker,setstateChecker]=useState(false)
 
@@ -46,7 +50,7 @@ function App() {
 
 
   const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',title:"welcome",img:null,message:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
-  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo,totalPosts:totalPosts,totalLikes:totalLikes,followers:followers}])
+  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo,totalPosts:totalPosts,totalLikes:totalLikes,followers:followers,likedPosts:likedPosts,dislikedPosts:dislikedPosts,commentedPosts:commentedPosts}])
 
   return (
     <div className="App">
@@ -80,6 +84,9 @@ function App() {
                 totalPosts={totalPosts}
                 totalLikes={totalLikes}
                 followers={followers}
+                likedPosts={likedPosts}
+                dislikedPosts={dislikedPosts}
+                commentedPosts={commentedPosts}
               />
             }
         />
@@ -115,6 +122,18 @@ function App() {
                                                     settoggle={settoggle}
                                                     userDetailsArray={userDetailsArray}
                                                     setuserDetailsArray={setuserDetailsArray}
+                                                />} 
+                  />
+                  <Route path='visitprofile' element={<VProfile 
+                                                  userName={userName}
+                                                  finalComment={finalComment}
+                                                  setprofileVideo={setprofileVideo}
+                                                  profileImage={profileImage}
+                                                  setprofileImage={setprofileImage}
+                                                  profileVideo={profileVideo}
+                                                  settoggle={settoggle}
+                                                  userDetailsArray={userDetailsArray}
+                                                  setuserDetailsArray={setuserDetailsArray}
                                                 />} 
                   />
                  <Route path='notification' element={<Notification />} />

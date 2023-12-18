@@ -3,7 +3,7 @@ import './Sign.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 
-const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,userDetailsArray,setuserDetailsArray,mobilenumber,gmail,gender,age,profileImage,profileVideo,totalPosts,totalLikes,followers}) => {
+const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,userDetailsArray,setuserDetailsArray,mobilenumber,gmail,gender,age,profileImage,profileVideo,totalPosts,totalLikes,followers,likedPosts,dislikedPosts,commentedPosts}) => {
 
     const [name,setname]=useState('')
     const [createPassword,setcreatePassword]=useState('')
@@ -45,7 +45,10 @@ const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,u
                     profileVideo,
                     totalPosts,
                     totalLikes,
-                    followers              
+                    followers,
+                    likedPosts,
+                    dislikedPosts,
+                    commentedPosts             
                 })
                 .then(res => { 
                         if (res.data === 'exist'){

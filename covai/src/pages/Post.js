@@ -6,8 +6,9 @@ import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,like,setLike,like1,setLike1}) => {
+const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,like,setLike,like1,setLike1,interactionsArray,setinteractionsArray}) => {
 
   
   const[liked,setliked]=useState(true)
@@ -66,7 +67,8 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,l
       requiredObject[0].likeCount = result
       setLike(!like);
       setLike1(false)
-      updateInteraction()
+      updateInteraction() 
+      
   }
 
   const handleDisLike=()=>{
@@ -131,9 +133,9 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,l
               <div className='userInfo'>
                     {profileImage 
                         ? 
-                          <img src={profileImage} alt=''></img>      
+                        <Link to='/home/visitprofile'><img src={profileImage} alt=''/></Link>   
                         : 
-                          <img style={{height:'70%'}}src={require('.././images/userIcon.png')} alt=''></img>
+                      <Link to='/home/visitprofile' style={{height:'70%'}}><img src={require('.././images/userIcon.png')} alt=''/></Link>
                     }
                     <h2>@{requiredObject[0].userName}</h2>
                     { userName === requiredObject[0].userName ? 
