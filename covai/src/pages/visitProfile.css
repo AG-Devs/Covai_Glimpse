@@ -1,203 +1,185 @@
-.singlePost{
-    position: fixed;
-    top:17%;
-    left: 20%;
-    width: 60%;
-    height: 100vh;
-    background-color: white;
-    box-shadow: 0rem 0rem 0.2rem black;
-    
+.profilePage{
+    width: 73%;
+    height: 92vh;
+    position:absolute;
+    top: 15%;
+    left: 22%;
 }
-.singlePostContent{
-    height: 84vh;
-    background-color: white;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-.postContent{
-    position: relative;
-    top: 0%;
-    height: auto;
-    width: 100%;
-    background-color: white;
-}
-.postContent>h1{
-    background-color: white;
-    height: auto;
-    width: 90%;
-    margin: 2% 4% 2% 4%;
-}
-.postContent>p{
-    background-color: white;
-    height: auto;
-    width: 90%;
-    font-size: 110%;
-    margin: 2% 4% 2% 4%;
-}
-.userInfo{
-    height: 200%;
-    width: 100%;
-    background-color: transparent;
-    margin: 2% 4% 2% 4%;
-    display: flex;
-    align-items: center;
-    gap: 2%;
-}
-.userInfo > Link>img {
-    height: 100%;
-    width: 7%;
-    border-radius: 100%;
-}
-.userInfo > h2 {
-    height: 100%;
-    color: blueviolet;
-}
-.postImg{
+.profileDetails{
     height: 70%;
-    width: 60%;
-    position: relative;
-    left: 20%;
-}
-.postDeleteButton{
-    position: fixed;
-    top: 23%;
-    left: 73%;
-    color: black;
-    background-color: white;
-}
-.postDeleteButton > button{
-    border: none;
-    height: 150%;
-    width: 150%;
-    background-color: white;
-}
-.postDeleteButton > button :hover{
-    color: red;
-    background-color: white;
-}
-.postDeleteButton > button > svg{
-    height: 130%;
-    width: 130%;
-    background-color: white;
-}
-.interactionSession{
-    height: 50%;
-    width: 90%;
-    background-color: white;
-    margin: 2% 4% 2% 4%;
     display: flex;
     flex-flow: column;
     gap: 5%;
 }
-.likeSession{
-    background-color: transparent;
-    height: 15%;
-    width: 90%;
-    margin-left: 2%;
-    display: flex;
-    gap: 6%;
-
-}
-.buttons{
-    background-color: transparent;
-    display: flex;
-}
-.buttons1{
-    background-color: transparent;
-    display: flex;
-}
-.buttons>svg{
-    background-color: transparent;
-    color: skyblue;
+.profilePic{
     height: 100%;
-    width: 80%;
+    width: 50%;
 }
-.buttons1>svg{
-    color:blueviolet;
+.followButtons{
+    display: flex;
+    gap: 5%;
+    position: fixed;
+    top: 42%;
+    left: 54.5%;
+    height: 5%;
+    width: 50%;
     background-color: transparent;
-    height: 100%;
-    width: 80%;
 }
-.commentSession{
-    height: 80%;
-    width: 90%;
-    background-color: white;
-}
-.commentForm{
-    height: auto;
-    background-color: white;
-}
-.commentForm>label{
-    position: relative;
-    left: 100000px;
-}
-.commentForm>textarea{
-    background-color: transparent;
-    width: 70%;
-    min-height: 20%;
-    border: 2px solid rgba(128, 128, 128, 0.498);
-    border-radius: 7px 8px;
-    position: relative;
-    top: 25%;
-    left:3%;
-    resize:none;
-    font-size: 120%;
-    padding: 1% 1% 0% 2%;
-}
-.commentForm>button{
-    background-color: transparent;
-    width: 8%;
-    height: 70%;
+.followButtons > p{
+    width: 15%;
+    height: 90%;
     border: none;
     border-radius: 7px 8px;
-    position: relative;
-    top: 25%;
-    left:5%;
+    color: white;
+    background-color: blueviolet;
+    font-size: 120%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
-.commentForm>button>svg{
-    background-color: transparent;
-    width: 90%;
-    height: 90%;
+.profilePicDelete{
+    position: fixed;
+    top: 23%;
+    left: 65%;
+    color: black;
 }
-.comments{
+.profilePicDelete > button{
+    border: none;
     height: 150%;
-    width: 100%;
-    overflow-y: scroll;
-    position: relative;
-    top: 10%;
-    left: 10%;
-    background-color: white;
+    width: 150%;
 }
-.commentContent{
-    width: 90%;
-    margin-left: 2%;
-    height: auto;
+.profilePicDelete > button :hover{
+    color: red;
+}
+.profilePicDelete > button > svg{
+    height: 130%;
+    width: 130%;
+}
+.profileVideo {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    top: 20%;
+    left: 40.5%;
+}
+.profileVideo>img{
+    height: 100%;
+    width: 20%;
+    border-radius: 100%;
+}
+.profileVideoDisplay{
+    height: 100%;
+    width: 20%;
+    border-radius: 100%;
+    border: 2px solid blueviolet;
+    z-index: 2;
+    overflow: hidden;
+}
+.profileVideoDisplay > video{
+    position: relative;
+    top: -35%;
+    left:-30%;
+    height: 170%;
+    width: 160%;
+    margin: 0%;
     background-color: transparent;
+}
+.userDetails{
+    position: fixed;
+    top: 13%;
+    left: 22%;
+    height: 50%;
+    width: 100%;
+    z-index: 1;
     display: flex;
     flex-flow: column;
-    gap:10%;
+    gap: 1%;
 }
-.commentDisplay{
-    width: 90%;
-    margin: 2%;
-    height: auto;
-    background-color:transparent;
-    box-shadow: 0rem 0rem 0.3rem black;
-    padding: 2%;
-}
-.commentUser{
-    background-color: transparent;
+.profilePic{
+    height: 55%;
+    width: 50%;
+    position: relative;
+    top: 0%;
+    left: 11%;
     display: flex;
-    gap: 2%;
+    flex-flow: column;
+    align-items: center;
 }
-.commentUser > h3{
+.profilePic>h1{
+    margin: 1%;
+    position: fixed;
+    top: 35%;
+    color: blueviolet;
+    text-shadow: 0rem 0rem 1px black;
+}
+.imgInput{
+    display: none;
+}
+.userAnalytics{
+    width: 75%;
+    position: relative;
+    top: 10%;
+    left: -1.5%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.analytics{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.analytics > h2,h3{
+    font-size: 150%;
+    color: blueviolet;
+    margin: 1%;
+}
+.yourPostsDisplay{
+    position: relative;
+    top:50%;
+    width: 100%;
+    height: auto;
+}
+.posts{
+    width: 100%;
+    margin-left: 1%;
+    padding-bottom: 2%;
+    background-color: white;
+    color: black;
+    border-radius: 7px 8px;
+    box-shadow: 0rem 0rem 0.2rem black;
+    z-index: 1;
+}
+.posts > h3,p{
+    color: black;
     background-color: transparent;
-    margin: 0%;
 }
-
-.commentUser > img{
-    height: 7%;
-    width: 7%;
-    background-color: transparent;
+.posts >h3{
+    margin: 2% 2% 0% 2%;
+    padding: 2% 2% 0% 2%;
 }
-
+.posts >p{
+    margin: 0% 2% 2% 2%;
+    padding: 2% 2% 2% 2%;
+}
+.profileFeedImg{
+    background-color: white;
+    border-radius: 7px 8px;
+}
+.profileFeedImg>img{
+    height: 30%;
+    width: 30%;
+    margin-left: 30%;
+}
+.profileFeedImg1{
+    display: none;
+}
+.noPost{
+    position:fixed;
+    top: 75%;
+    left: 51%;
+}
+.noPost > p {
+    font-size:150%
+}

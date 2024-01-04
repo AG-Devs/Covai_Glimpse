@@ -15,6 +15,7 @@ app.use(express.json())
 app.use("/app",routeUrls)
 app.use("/dashboard",routeUrls)
 app.use("/login",routeUrls)
+app.use("/getall",routeUrls)
 
 app.use("/new",routeUrls)
 app.use("/post",routeUrls)
@@ -23,5 +24,16 @@ app.use("/currentPost",routeUrls)
 app.use("/display",routeUrls)
 
 app.use("/single",routeUrls)
+app.use("/getting",routeUrls)
+app.use("/visited",routeUrls)
+app.use("/followed",routeUrls)
+app.use("/unfollowed",routeUrls)
+app.use("/delete",routeUrls)
+
+app.use("/user",routeUrls)
+app.use("/follow",routeUrls)
+app.use("/unfollow",routeUrls)
+
+app.use("/edit",routeUrls)
 
 app.listen( process.env.PORT || 3001,()=>{console.log('server is up')})

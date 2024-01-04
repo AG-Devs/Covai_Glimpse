@@ -4,7 +4,7 @@ import './App.css';
 import Sign from './Signing/Sign';
 import Signin from './Signing/Signin';
 import Home from './Home';
-import Notification from './pages/Notification';
+import Notification from './pages/Notification'
 import NewPost from './pages/NewPost';
 import Profile from './pages/Profile';
 import Feed from './homeComponents/Feed';
@@ -31,14 +31,15 @@ function App() {
   const[profileImage,setprofileImage]=useState(null)
   const[likeCount,setlikeCount]=useState(0)
   const[dislikeCount,setdislikeCount]=useState(0)
-  const[totalPosts,settotalPosts]=useState(0)
   const[followers,setfollowers]=useState(0)
-  const[totalLikes,settotalLikes]=useState(0)
   const[likedPosts,setlikedPosts]=useState([{id_i:0,postId:0}])
   const[dislikedPosts,setdislikedPosts]=useState([{id_i:0,postId:0}])
   const[commentedPosts,setcommentedPosts]=useState([{id_i:0,postId:0}])
+  const[followedUsers,setfollowedUsers]=useState([])
+  const [Notifications,setNotifications]=useState([])
   const[tick,settick]=useState(false)
   const [stateChecker,setstateChecker]=useState(false)
+  const [visit,setvisit] = useState('')
 
   const[like,setLike]=useState(false)
   const[like1,setLike1]=useState(false)
@@ -50,7 +51,7 @@ function App() {
 
 
   const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',title:"welcome",img:null,message:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
-  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo,totalPosts:totalPosts,totalLikes:totalLikes,followers:followers,likedPosts:likedPosts,dislikedPosts:dislikedPosts,commentedPosts:commentedPosts}])
+  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo,followers:followers,likedPosts:likedPosts,dislikedPosts:dislikedPosts,commentedPosts:commentedPosts,Notification:[{messages:'no message'}]}])
 
   return (
     <div className="App">
@@ -81,12 +82,12 @@ function App() {
                 gmail={gmail}
                 gender={gender}
                 age={age}
-                totalPosts={totalPosts}
-                totalLikes={totalLikes}
                 followers={followers}
                 likedPosts={likedPosts}
                 dislikedPosts={dislikedPosts}
                 commentedPosts={commentedPosts}
+                followedUsers={followedUsers}
+                Notifications={Notifications}
               />
             }
         />
@@ -101,6 +102,7 @@ function App() {
                 setsearch={setsearch}
                 profileImage={profileImage}
                 userDetailsArray={userDetailsArray}
+                setuserDetailsArray={setuserDetailsArray}
               />
             }>
                  <Route index element={<Feed 
@@ -126,6 +128,7 @@ function App() {
                   />
                   <Route path='visitprofile' element={<VProfile 
                                                   userName={userName}
+                                                  setuserName={setuserName}
                                                   finalComment={finalComment}
                                                   setprofileVideo={setprofileVideo}
                                                   profileImage={profileImage}
@@ -134,9 +137,17 @@ function App() {
                                                   settoggle={settoggle}
                                                   userDetailsArray={userDetailsArray}
                                                   setuserDetailsArray={setuserDetailsArray}
+                                                  visit={visit}
+                                                  Notifications={Notifications}
+                                                  setNotifications={setNotifications}
+                                                  followedUsers={followedUsers}
+                                                  setfollowedUsers={setfollowedUsers}
                                                 />} 
                   />
-                 <Route path='notification' element={<Notification />} />
+                 <Route path='notification' element={<Notification 
+                                                        userName={userName}
+                                                    />} 
+                 />
                  <Route path='newpost' element={<NewPost 
                                                     userName={userName}
                                                     navigate={navigate}
@@ -161,6 +172,7 @@ function App() {
                                                           setLike={setLike}
                                                           like1={like1}
                                                           setLike1={setLike1}
+                                                          setvisit={setvisit}
                                                       />} 
                  />
                 <Route path='editprofile' element={<EditProfile 

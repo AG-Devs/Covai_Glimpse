@@ -13,6 +13,7 @@ const EditProfile = ({tick,settick,userDetailsArray,userName,settoggle,profileVi
   const[gmail1,setgmail1]=useState(null)
   const[gender1,setgender1]=useState(null)
   const[age1,setage1]=useState(null)
+  const [profileVideo1,setProfileVideo1]=useState(null)
 
   const[videoName,setvideoName]=useState(null)
   const inputRef3=useRef()
@@ -20,30 +21,33 @@ const EditProfile = ({tick,settick,userDetailsArray,userName,settoggle,profileVi
   const requiredObject = userDetailsArray.filter((single)=>(
                                                     single.userName === userName
                                                 ))
-
   const sendToDataBase = ()=>{
-        axios.post('http://localhost:3001/app/profileedit',{
-               mobilenumber: requiredObject[0].mobilenumber,
-                gender:requiredObject[0].gender,
-                age: requiredObject[0].age,
-                gmail:requiredObject[0].gmail,
-                profileVideo:requiredObject[0].profileVideo
+        axios.post('https://covai-glimpse.onrender.com/edit/profiledit',{
+              userName,
+               mobilenumber1,
+               age1,
+               gmail1,
+               gender1,
+               profileVideo1
             })
-            .then(res => console.log('server is working'));
+            .then(res =>{
+              if(res.data==='updated'){
+                alert('done')
+              }
+              else{
+                alert('error')
+              }  
+            });
+            
   }
 const handleForm1=(e)=>{
     e.preventDefault()
-    requiredObject[0].mobilenumber = mobilenumber1
-    requiredObject[0].gender = gender1
-    requiredObject[0].age = age1
-    requiredObject[0].gmail = gmail1
-    requiredObject[0].profileVideo = profileVideo
     sendToDataBase()
 }
 const handleVideo = (e)=>{
   try{
       const temp = e.target.files[0] ? e.target.files[0] : ''
-      setprofileVideo(URL.createObjectURL(temp))
+      setProfileVideo1(URL.createObjectURL(temp))
       setvideoName(null)
       settick(true)
   }
@@ -55,7 +59,7 @@ const handlevideo=(()=>{
   inputRef3.current.click()
 })
 const handlevideodelete=(()=>{      
-  setprofileVideo(null)
+  setProfileVideo1(null)
   settick(false)
 })
 
@@ -86,10 +90,10 @@ const handlevideodelete=(()=>{
                 <div>
                         <label htmlFor='gender'>gender:</label>
                         <select name="gender" id="gender" form="carform" value={gender1} onChange={((e)=>setgender1(e.target.value))}>
-                                <option value="male">Prefer Not To Say</option>
+                                <option value="prefer not to say">Prefer Not To Say</option>
                                 <option value="female">Female</option>
                                 <option value="transgender">Transgender</option>
-                                <option value="not to say">Male</option>
+                                <option value='male'>Male</option>
                       </select>
                 </div>
                 <div>

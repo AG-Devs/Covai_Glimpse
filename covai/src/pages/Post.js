@@ -8,7 +8,7 @@ import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,like,setLike,like1,setLike1,interactionsArray,setinteractionsArray}) => {
+const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,like,setLike,like1,setLike1,interactionsArray,setinteractionsArray,setvisit}) => {
 
   
   const[liked,setliked]=useState(true)
@@ -31,13 +31,13 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,l
   console.log(requiredObject[0])
 
   const updateInteraction=()=>{
-    const name1 = requiredObject[0].userName
+    const id = requiredObject[0].id
     const like = requiredObject[0].likeCount
     const dislike = requiredObject[0].dislikeCount
     const postComment = requiredObject[0].postComment
     try{
-      axios.post('http://localhost:3001/post/update',{
-                          name1,
+      axios.post('https://covai-glimpse.onrender.com/post/update',{
+                          id,
                           like,
                           dislike,
                           postComment   
@@ -100,11 +100,14 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,l
 
   }
 
+    const temp = requiredObject[0].userName
+    setvisit(temp)
+
   const handleDeletePost =()=>{
     const name1 = requiredObject[0].userName
     const id = Number(requiredObject[0].id)
     try{
-      axios.post('http://localhost:3001/currentPost/delete',{
+      axios.post('https://covai-glimpse.onrender.com/currentPost/delete',{
                           name1,
                           id  
           })
@@ -133,11 +136,11 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,l
               <div className='userInfo'>
                     {profileImage 
                         ? 
-                        <Link to='/home/visitprofile'><img src={profileImage} alt=''/></Link>   
+                        <img src={profileImage} alt=''/> 
                         : 
-                      <Link to='/home/visitprofile' style={{height:'70%'}}><img src={require('.././images/userIcon.png')} alt=''/></Link>
+                      <img src={require('.././images/userIcon.png')} alt=''/>
                     }
-                    <h2>@{requiredObject[0].userName}</h2>
+                    <Link to='/home/visitprofile'><h2 style={{color:'blueviolet'}}>@{requiredObject[0].userName}</h2></Link>
                     { userName === requiredObject[0].userName ? 
                           <div className='postDeleteButton'>
                               <button onClick={()=>{handleDeletePost()}}><AiFillDelete /></button> 

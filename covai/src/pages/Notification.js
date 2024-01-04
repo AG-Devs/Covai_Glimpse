@@ -1,31 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
+import axios from 'axios';
+
+
 import './Notification.css'
 
-const Notification = () => {
+const Notification = ({userName}) => {
+  const [filteredUser,setfilteredUser]=useState({})
+    useEffect(()=>{
+       
+        try{
+            axios.post('https://covai-glimpse.onrender.com/getting/notification',{userName})
+            .then(res =>{
+              if (res.data){
+                  setfilteredUser(res.data.data)
+              }
+              else if (res.data === 'not exist'){
+                  alert('Incorrect username / password')
+              }
+            })
+            .catch(e=>{
+                  alert('Sorry! something went wrong')
+            })
+      }
+      catch(e){
+          alert('error')
+      }
+     },[])
+
   const[notification,setnotification]=useState(true)
-  const[notificationList,setnotificationList]=useState([
-    {id:1,message:'you got a like'},
-    {id:2,message:'you got a like'},
-    {id:3,message:'you got a like'},
-    {id:4,message:'you got a like'},
-    {id:5,message:'you got a like'},
-    {id:6,message:'you got a like'},
-    {id:7,message:'you got a like'},
-    {id:8,message:'you got a like'},
-    {id:9,message:'you got a like'},
-    {id:10,message:'you got a like'},
-    {id:11,message:'you got a like'},
-    {id:12,message:'you got a like'}
-  ])
+  const[notificationList,setnotificationList]=useState([{userName:'gokul',notification:[{id:1,message:'hi'}]}])
+  const temp3 = filteredUser.messages ? filteredUser.messages : 'hi'
+  console.log(temp3)
+
   return (
     <div className='notificationPage'>
-     {notificationList.map((messages)=>(
+     
       <div className='notificationPage2'>
         <div className='notificationPage3' onClick ={()=>{setnotification(false)}}>
-            {messages.message}
+              {filteredUser.messages ? temp3.map((single)=>(
+                                                            <p>{single.message}</p>
+                                                          )) 
+              : 'No notification' }
         </div>
       </div>
-     ))}
+    
     </div>
   )
 }

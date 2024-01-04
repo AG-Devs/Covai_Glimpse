@@ -15,7 +15,6 @@ const RightSideBar = ({navigate}) => {
   const NewsApi= async ()=>{
       try{
         const News = await axios.get(`https://newsapi.org/v2/everything?q=tamilnadu&from=${finalDate}-1&sortBy=publishedAt&apiKey=fc6937a1f789403881b2fcca1d5d319e`)
-        console.log(News.data.articles)
         setNews(News.data.articles)
       }
       catch(err){

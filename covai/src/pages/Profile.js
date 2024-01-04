@@ -7,10 +7,21 @@ import axios from 'axios';
 const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage,setprofileImage,finalComment,navigate,userName,settoggle,totalLikes,totalPosts,followers}) => {
 
     const [filteredUser,setfilteredUser]=useState({})
+    const [live2,setlive2]=useState(false)
+
+    const requiredObject = finalComment.filter((single)=>(
+        single.userName === userName
+    ))
+
+    let totalLikes2 = 0
+    for (let i=0;i<=requiredObject.length-1;i++){
+        totalLikes2 = requiredObject[i].likeCount + totalLikes2
+    }
+
     useEffect(()=>{
         settoggle(false)
         try{
-            axios.post('http://localhost:3001/single/profile',{userName})
+            axios.post('https://covai-glimpse.onrender.com/single/profile',{userName})
             .then(res =>{
               if (res.data){
                   setfilteredUser(res.data.data)
@@ -26,7 +37,7 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
       catch(e){
           alert('error')
       }
-     },[])
+     },[live2])
 
     const [profilePic,setprofilePic] = useState('')
     const[tick,settick]=useState(false) 
@@ -60,11 +71,25 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
     const handlevideodelete=(()=>{      
         setprofileVideo(null)
         settick(false)
+        sendToDataBase()
+        setlive2(true)
       })
 
-    const requiredObject = finalComment.filter((single)=>(
-        single.userName === userName
-    ))
+      const sendToDataBase = ()=>{
+        const profileVideo2 = null
+        axios.post('https://covai-glimpse.onrender.com/delete/profilevideo',{
+              userName,
+              profileVideo2
+            })
+            .then(res =>{
+              if(res.data==='updated'){
+              }
+              else{
+                alert('error')
+              }  
+            });
+            
+  }
 
   return (
     <div className='profilePage'>
@@ -72,13 +97,13 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
             <div className='profileDetails'>
                     <div className='profilePic'>
                             <div className='profileVideo'>
-                                {profileVideo ?  
+                                {filteredUser.profileVideo ?  
                                     <div className='profileVideoDisplay'>
                                         <video muted autoPlay loop>
-                                            <source src={profileVideo}></source>
+                                            <source src={filteredUser.profileVideo}></source>
                                         </video>
                                     </div>
-                                : profileImage ? <img onClick={(e)=>handleProfileClick(e)} src={profileImage} alt=''></img>
+                                : filteredUser.profileImage ? <img onClick={(e)=>handleProfileClick(e)} src={filteredUser.profileImage} alt=''></img>
                                 : <img style={{height:'100%'}} onClick={(e)=>handleProfileClick(e)} src={require('.././images/userIcon.png')} alt=''></img>}
                             </div>
                             <h1>@{userName}</h1>
@@ -94,13 +119,13 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
                     </div>
                     <div>
                         <Link to='/home/editprofile' className='profileButtons'><p onClick={()=>{settoggle(false)}}> Edit</p></Link>
-                        {profileImage ?
+                        {filteredUser.profileImage ?
                             <div  className='profilePicDelete'>
                                     <button onClick={()=>{handleDelete()}}><AiFillDelete /></button>
                             </div>
                           :
                           ''}
-                          {profileVideo?
+                          {filteredUser.profileVideo?
                          <div  className='profilePicDelete'>
                                 <button onClick={()=>{ handlevideodelete()}}><AiFillDelete /></button>
                           </div>
@@ -110,7 +135,7 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
             </div>
             <div className='userAnalytics'>
                 <div className='analytics'>
-                    <h2>{filteredUser.totalPosts}</h2>
+                    <h2>{requiredObject.length}</h2>
                     <h3>Posts</h3>
                 </div >
                 <div className='analytics'>
@@ -118,7 +143,7 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
                     <h3>Followers</h3>
                 </div>
                 <div className='analytics'>
-                    <h2>{filteredUser.totalLikes}</h2>
+                    <h2>{totalLikes2}</h2>
                     <h3>Likes</h3>
                 </div>
             </div>

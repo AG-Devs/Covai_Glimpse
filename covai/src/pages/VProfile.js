@@ -1,16 +1,46 @@
 import React,{useRef,useEffect, useState} from 'react'
 import './visitProfile.css'
 import {Link} from 'react-router-dom'
-import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
 
-const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage,setprofileImage,finalComment,navigate,userName,settoggle,totalLikes,totalPosts,followers}) => {
-
+const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage,setprofileImage,finalComment,navigate,userName,settoggle,followers,visit,Notification,followedUsers,setfollowedUsers,Notifications,setNotifications}) => {
+    
+    
     const [filteredUser,setfilteredUser]=useState({})
+    const [follow,setfollow] = useState(true)
+
+    const [live,setlive]=useState(false)
+
+    const requiredObject = finalComment.filter((single)=>(
+        single.userName === visit
+    ))
+
+    let totalLikes = 0
+    for (let i=0;i<=requiredObject.length-1;i++){
+        totalLikes = requiredObject[i].likeCount + totalLikes
+    }
+
+    
+    const requiredObject3 = userDetailsArray.filter((single)=>(
+        userName === single.userName
+    ))
+    const temp5 = requiredObject3[0].followedUser
+    const temp6 = temp5.filter((single)=>(
+                                        single.user === visit
+                               ))
+
     useEffect(()=>{
         settoggle(false)
+
+        if (temp6.length){
+            setfollow(false)
+        }
+        else{
+            setfollow(true)
+        }
+
         try{
-            axios.post('http://localhost:3001/single/profile',{userName})
+            axios.post('https://covai-glimpse.onrender.com/visited/profiles',{visit})
             .then(res =>{
               if (res.data){
                   setfilteredUser(res.data.data)
@@ -26,36 +56,149 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
       catch(e){
           alert('error')
       }
-     },[])
+     },[live])
 
+    const updateFollow = (Notification2)=>{
+        const newFollowers = filteredUser.followers
+        try{
+            axios.post('https://covai-glimpse.onrender.com/follow/updated',{
+                                visit,
+                                newFollowers,
+                                Notification2
+                })
+                .then(res => { 
+                        if (res.data === 'done'){
+                           
+                        }
+                        else if (res.data === 'error'){                            
+                            alert('Sorry! something went wrong')
+                        }
+                })
+                .catch(e => {
+                    alert(e)
+                })
+          }
+          catch(e){
+                console.log('err')
+          }
 
+        const id = filteredUser.followedUsers ? filteredUser.followedUsers[filteredUser.followedUsers.length-1].id + 1 : 1
+        const tempObj = {id_u:id,user:visit}
+        const temp4 = [...temp5,tempObj]
+        console.log(temp4)
+        try{
+            axios.post('https://covai-glimpse.onrender.com/followed/users',{
+                                userName,
+                                temp4
+                })
+                .then(res => { 
+                        if (res.data === 'done'){
+                            
+                        }
+                        else if (res.data === 'error'){                            
+                            alert('Sorry! something went wrong')
+                        }
+                })
+                .catch(e => {
+                    alert(e)
+                })
+          }
+          catch(e){
+                console.log('err')
+          }
+          setlive(false)
+    }
 
-    const requiredObject1 = userDetailsArray.filter((single)=>(
-        single.userName === userName
-    ))
-
-
+    const handleFollow=()=>{
+        filteredUser.followers = filteredUser.followers + 1
+        const temp = filteredUser.messages
+        setfollow(false)
+        const Notification1={id:1,message:'you got a new follower'}
+        const Notification2=[...temp,Notification1]
+        updateFollow(Notification2)
+    }
   
+    const updateUnfollow = ()=>{
+        const newFollowers = filteredUser.followers
+        try{
+            axios.post('https://covai-glimpse.onrender.com/unfollow/updating',{
+                                visit,
+                                newFollowers,
+                })
+                .then(res => { 
+                        if (res.data === 'done'){
+                           
+                        }
+                        else if (res.data === 'error'){                            
+                            alert('Sorry! something went wrong')
+                        }
+                })
+                .catch(e => {
+                    alert(e)
+                })
+          }
+          catch(e){
+                console.log('err')
+          }
 
-    const requiredObject = finalComment.filter((single)=>(
-        single.userName === userName
-    ))
+          
+          const temp4 = temp5.filter((single)=>(
+                                                single.user !== visit
+                                            ))
+        console.log(temp4)
+          try{
+            axios.post('https://covai-glimpse.onrender.com/unfollowed/people',{
+                                userName,
+                                temp4
+                })
+                .then(res => { 
+                        if (res.data === 'done'){
+                            
+                        }
+                        else if (res.data === 'error'){                            
+                            alert('Sorry! something went wrong')
+                        }
+                })
+                .catch(e => {
+                    alert(e)
+                })
+          }
+          catch(e){
+                console.log('err')
+          }
+          setlive(false)
+    }
+
+    const handleUnfollow=()=>{
+        filteredUser.followers = filteredUser.followers - 1
+        setfollow(true)
+        updateUnfollow()
+    }
+
   return (
     <div className='profilePage'>
         <div className='userDetails'>
             <div className='profileDetails'>
                     <div className='profilePic'>
-                    <img style={{height:'100%'}}  src={require('.././images/userIcon.png')} alt=''></img>
-                            <h1>@{userName}</h1>
-
-                    </div>
-                    <div>
-                        <button className='profileButtons'> follow</button>
-                    </div>
+                            <div className='profileVideo'>
+                                {profileVideo ?  
+                                    <div className='profileVideoDisplay'>
+                                        <video muted autoPlay loop>
+                                            <source src={profileVideo}></source>
+                                        </video>
+                                    </div>
+                                : profileImage ? <img src={profileImage} alt=''></img>
+                                : <img style={{height:'100%'}} src={require('.././images/userIcon.png')} alt=''></img>}
+                            </div>
+                            <h1>@{filteredUser.userName}</h1>
+                            <div className='followButtons' >
+                                {follow ? <p onClick={(e)=>{handleFollow(e)}}> Follow </p> : <p onClick={(e)=>{handleUnfollow(e)}}> Unfollow </p> }
+                            </div>
+                    </div>          
             </div>
             <div className='userAnalytics'>
                 <div className='analytics'>
-                    <h2>{filteredUser.totalPosts}</h2>
+                    <h2>{requiredObject.length}</h2>
                     <h3>Posts</h3>
                 </div >
                 <div className='analytics'>
@@ -63,7 +206,7 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
                     <h3>Followers</h3>
                 </div>
                 <div className='analytics'>
-                    <h2>{filteredUser.totalLikes}</h2>
+                    <h2>{totalLikes}</h2>
                     <h3>Likes</h3>
                 </div>
             </div>
@@ -83,7 +226,7 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
                     ))
                 : 
                 <div className='noPost'>
-                    <p>Upload Your First Post</p> 
+                    <p>No Post</p> 
                 </div>
                 }
         </div>

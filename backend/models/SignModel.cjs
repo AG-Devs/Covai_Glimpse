@@ -10,12 +10,12 @@ const signupSchema= new mongoose.Schema({
     gmail:{type:String,required:false},
     profileImage:{type:String,required:false},
     profileVideo:{type:String,required:false},
-    totalPosts:{type:Number,required:false},
-    totalLikes:{type:Number,required:false},
     followers:{type:Number,required:false},
     likedPosts:{type:Array,required:false},
     dislikedPosts:{type:Array,required:false},
-    commentedPosts:{type:Array,required:false}
+    commentedPosts:{type:Array,required:false},
+    followedUser:{type:Array,required:false},
+    messages:{type:Array,required:false}
 })
 
 module.exports= mongoose.model('users',signupSchema)

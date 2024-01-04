@@ -25,9 +25,9 @@ const newPost= async (req,res)=>{
 }
 
 const updatePost = async (req,res)=>{
-    const {name1,like,dislike,postComment} = req.body
+    const {id,like,dislike,postComment} = req.body
     try{
-        await Post.updateOne({userName:name1},{
+        await Post.updateOne({id:id},{
             $set:{
                 likeCount:like,
                 dislikeCount:dislike,
