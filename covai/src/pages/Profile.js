@@ -58,6 +58,7 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
             requiredObject1[0].profileImage = temp
             setprofilePic(null)
             settick(true)
+            sendImgToDataBase(profileImage)
         }
         catch(err){
             handleDelete()
@@ -68,7 +69,7 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
         setprofilePic(null)
         settick(false)
     })
-    const handlevideodelete=(()=>{      
+    const handlevideodelete=(()=>{ 
         setprofileVideo(null)
         settick(false)
         sendToDataBase()
@@ -83,6 +84,21 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
             })
             .then(res =>{
               if(res.data==='updated'){
+              }
+              else{
+                alert('error')
+              }  
+            });    
+  }
+      const sendImgToDataBase = (temp)=>{
+        const profileImage2 = temp.length ? temp : null
+        axios.post('https://covai-glimpse.onrender.com/send/profileimg',{
+              userName,
+              profileImage2
+            })
+            .then(res =>{
+              if(res.data==='updated'){
+                alert('done')
               }
               else{
                 alert('error')

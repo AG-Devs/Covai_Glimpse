@@ -37,9 +37,9 @@ const EditProfile = ({tick,settick,userDetailsArray,userName,settoggle,profileVi
               else{
                 alert('error')
               }  
-            });
-            
+            });      
   }
+  
 const handleForm1=(e)=>{
     e.preventDefault()
     sendToDataBase()

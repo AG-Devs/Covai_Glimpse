@@ -167,18 +167,32 @@ const editProfile = async (req,res)=>{
       res.json('updated')                                                
     }
     catch(e){
-        res.json(error)
+        res.json(e)
     }
 }
 
 const deleteProfileVideo = async (req,res)=>{
     const {userName,profileVideo2}=req.body
     try{
-      await User.updateOne({userName:userName},{$set:{profileVideo:profileVideo2}})
+      await User.updateOne({userName:userName},{$set:{
+                                                        profileVideo:profileVideo2
+                                                    }})
       res.json('updated')                                                
     }
     catch(e){
-        res.json(error)
+        res.json(e)
+    }
+}
+const updateProfileImage = async (req,res)=>{
+    const {userName,profileImage2}=req.body
+    try{
+      await User.updateOne({userName:userName},{$set:{
+                                                         profileImage : profileImage2,
+                                                    }})
+      res.json('updated')                                                
+    }
+    catch(e){
+        res.json(e)
     }
 }
 
@@ -194,5 +208,6 @@ module.exports = {
 
     getVisitedUser,
     editProfile,
-    deleteProfileVideo
+    deleteProfileVideo,
+    updateProfileImage
    }

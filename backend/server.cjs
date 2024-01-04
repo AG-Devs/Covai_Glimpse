@@ -29,6 +29,7 @@ app.use("/visited",routeUrls)
 app.use("/followed",routeUrls)
 app.use("/unfollowed",routeUrls)
 app.use("/delete",routeUrls)
+app.use("/send",routeUrls)
 
 app.use("/user",routeUrls)
 app.use("/follow",routeUrls)

@@ -24,5 +24,6 @@ router.post('/profiles',userController.getVisitedUser)
 
 router.post('/profiledit',userController.editProfile)
 router.post('/profilevideo',userController.deleteProfileVideo)
+router.post('/profileimg',userController.updateProfileImage)
 
 module.exports=router
