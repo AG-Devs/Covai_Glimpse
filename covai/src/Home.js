@@ -5,6 +5,8 @@ import RightSideBar from './homeComponents/RightSideBar'
 import { Outlet } from 'react-router-dom'
 
 const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search,profileImage,userDetailsArray,setuserDetailsArray,live2,setlive2}) => {
+
+  
   useEffect(()=>{
         fetch('https://covai-glimpse.onrender.com/getall/user', {
                 method:"GET",

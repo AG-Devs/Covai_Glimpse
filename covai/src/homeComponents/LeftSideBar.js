@@ -2,6 +2,8 @@ import React, { useState,useEffect} from 'react'
 import './LeftSideBar.css'
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineHome } from "react-icons/ai";
+import { RiUserFollowLine } from "react-icons/ri";
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -63,7 +65,11 @@ const LeftSideBar = ({userName,settoggle,profileImage1,userDetailsArray,live2,se
       <div className='profile'>
         <CgProfile />
         <Link to='/home/profile' className='profile' onClick={(e)=>{handleProfile(e)}}><p>Profile</p></Link>
-      </div>   
+      </div> 
+      <div className='follow'>
+      <RiUserFollowLine />
+      <Link to='/home/followedusers'><p className='followuser'>FollowedUsers</p></Link> 
+      </div> 
       <Link to='/'><p className='logout'>Logout</p></Link>
     </div>
   )

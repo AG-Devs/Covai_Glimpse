@@ -1,0 +1,27 @@
+.icons{
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    display:flex;
+    width: 61%;
+    flex-wrap:wrap;
+    background: transparent;
+    
+}
+.followedusers{
+    width: 20%;
+}
+.followedusers>img{
+   height: 40%;
+   width: 30%;
+   border-radius: 50%;
+   background: transparent;
+}
+.followedusers>p{
+    position: relative;
+    color:blueviolet ;
+    left: 7%;
+    font-size: 100%;
+    font-weight: bold;
+    background: transparent;
+}

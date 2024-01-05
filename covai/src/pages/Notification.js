@@ -37,8 +37,11 @@ const Notification = ({userName}) => {
      
       <div className='notificationPage2'>
         <div className='notificationPage3' onClick ={()=>{setnotification(false)}}>
+          <h1>Check Out Your Notification</h1>
               {filteredUser.messages ? temp3.map((single)=>(
+                                                          <div className='notificationPage4'>
                                                             <p>{single.message}</p>
+                                                            </div>
                                                           )) 
               : 'No notification' }
         </div>

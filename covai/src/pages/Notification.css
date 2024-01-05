@@ -1,34 +1,29 @@
 .notificationPage{
-    width: 95%;
-    height: 180%;
-    position:absolute;
-    top: 15%;
-    left: 22%;
-    display: flex;
-    flex-flow: column;  
-    gap: 1.5%;  
-}
-.notificationPage1{
-    width: 95%;
-    height: 300%;
-    position:absolute;
-    top: 15%;
-    left: 22%;
-    display: flex;
-    flex-flow: column;
+  position: absolute;
+  top: 16%;
+  left: 23%;
+  width: 40%;
+  height: 70%;
 }
 .notificationPage2{
-    background-color: transparent;
-    height: 80%;
-    width: 80%;
-    
+    width: 90%;
+    height: 70%;
 }
 .notificationPage3{
-    height: 90%;
-    background-color: white;
-    box-shadow: 0rem 0rem 0.5rem black;
-    border-radius: 7px 8px;
+    display: flex;
+    flex-flow: column;
+    gap: 10%;
+    width: 40%;
+    height: 70%;
 }
-.notificationPage3:hover{
-    height: 110%;
+.notificationPage3>h1{
+    width: 200%;
+    color: blueviolet;
+    height:20% ;
+}
+.notificationPage4{
+    height: 30%;
+    width: 200%;
+    background-color: white;
+    box-shadow: 0.1rem 0.1rem 0.4rem black;
 }

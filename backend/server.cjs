@@ -21,6 +21,10 @@ app.use("/new",routeUrls)
 app.use("/post",routeUrls)
 app.use("/currentPost",routeUrls)
 app.use("/change",routeUrls)
+app.use("/liked",routeUrls)
+app.use("/likedd",routeUrls)
+app.use("/disliked",routeUrls)
+app.use("/dislikedd",routeUrls)
 
 app.use("/display",routeUrls)
 

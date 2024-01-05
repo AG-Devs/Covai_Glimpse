@@ -224,6 +224,55 @@ const updateProfileImage = async (req,res)=>{
     }
 }
 
+const updateLikedPosts = async (req,res)=>{
+    const {userName,temp11} = req.body
+    try{
+      await User.updateOne({userName:userName},{$set:{
+                                                        likedPosts : temp11,
+                                                    }})
+      res.json('updated')                                                
+    }
+    catch(e){
+        res.json(e)
+    }
+}
+const updateLikedPosts2 = async (req,res)=>{
+    const {userName,temp12}=req.body
+    try{
+      await User.updateOne({userName:userName},{$set:{
+                                                         likedPosts : temp12,
+                                                    }})
+      res.json('updated')                                                
+    }
+    catch(e){
+        res.json(e)
+    }
+}
+const updateDislikedPosts = async (req,res)=>{
+    const {userName,temp21} = req.body
+    try{
+      await User.updateOne({userName:userName},{$set:{
+                                                        dislikedPosts : temp21,
+                                                    }})
+      res.json('updated')                                                
+    }
+    catch(e){
+        res.json(e)
+    }
+}
+const updateDislikedPosts2 = async (req,res)=>{
+    const {userName,temp22}=req.body
+    try{
+      await User.updateOne({userName:userName},{$set:{
+                                                         dislikedPosts : temp22,
+                                                    }})
+      res.json('updated')                                                
+    }
+    catch(e){
+        res.json(e)
+    }
+}
+
 module.exports = {
     createNewUser,
     getOneUser,
@@ -234,6 +283,10 @@ module.exports = {
     updateFollowedUsers,
     updateUnfollowedUsers,
     updateUnfollow,
+    updateLikedPosts,
+    updateLikedPosts2,
+    updateDislikedPosts,
+    updateDislikedPosts2,
 
     getVisitedUser,
     editProfile,

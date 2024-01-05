@@ -8,9 +8,10 @@ import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Post = ({finalComment,userName,profileImage1,stateChecker,setstateChecker,like,setLike,like1,setLike1,interactionsArray,setinteractionsArray,setvisit,live2,setlive2}) => {
+const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker,setstateChecker,like,setLike,like1,setLike1,interactionsArray,setinteractionsArray,setvisit,live2,setlive2}) => {
 
   const [filteredUser3,setfilteredUser3]=useState({})
+  const [allUsers,setallUsers]=useState(userDetailsArray)
 
   const id = useParams()
   const Id = id.id
@@ -21,8 +22,29 @@ const Post = ({finalComment,userName,profileImage1,stateChecker,setstateChecker,
   
   const visited = requiredObject[0].userName
 
+  
+
   useEffect(()=>{
     setlive2(false)
+
+    const needed = allUsers.filter((single)=>(single.userName === userName))
+    const liking = needed[0].likedPosts.filter((single)=>( single.id_p === requiredObject[0].id))
+    console.log(needed)
+    if (liking.length){
+        setLike(true)
+    }
+    else{
+        setLike(false)
+    }
+
+    fetch('https://covai-glimpse.onrender.com/getall/user', {
+                method:"GET",
+            })
+            .then(async (res)=> await res.json())
+            .then( (data)=>{
+              setallUsers(data.data)
+            })
+
     try{
         axios.post('http://localhost:3001/postsuser/username',{visited})
         .then(res =>{
@@ -51,8 +73,6 @@ const Post = ({finalComment,userName,profileImage1,stateChecker,setstateChecker,
   const temp2 = requiredObject[0].postComment
 
   const textbox=useRef(null)  
-
-  console.log(requiredObject[0])
 
   const updateInteraction=()=>{
     const id = requiredObject[0].id
@@ -91,8 +111,104 @@ const Post = ({finalComment,userName,profileImage1,stateChecker,setstateChecker,
       requiredObject[0].likeCount = result
       setLike(!like);
       setLike1(false)
-      updateInteraction() 
-      
+      updateInteraction()
+  }
+
+  const requiredUser = userDetailsArray.filter((single)=>(single.userName === userName))
+  const likedPostArray = requiredUser[0].likedPosts
+  if (like){
+    const id_p = requiredObject[0].id
+    const temp11 = [...likedPostArray,{id:1,id_p:id_p}]
+    try{
+      axios.post('http://localhost:3001/liked/postsupdate',{
+                          userName,
+                          temp11  
+          })
+          .then(res => { 
+                  if (res.data === 'updated'){
+                  }
+                  else if (res.data === 'error'){                            
+                      alert('Sorry! something went wrong')
+                  }
+          })
+          .catch(e => {
+              alert(e)
+          })
+    }
+    catch(e){
+          console.log('err')
+    }
+  }
+  else{
+      const id_p = requiredObject[0].id
+      const temp12 = likedPostArray.filter((single)=>(id_p !== single.id_p))
+      try{
+        axios.post('http://localhost:3001/likedd/postsremove',{
+                            userName,
+                            temp12  
+            })
+            .then(res => { 
+                    if (res.data === 'updated'){
+                    }
+                    else if (res.data === 'error'){                            
+                        alert('Sorry! something went wrong')
+                    }
+            })
+            .catch(e => {
+                alert(e)
+            })
+      }
+      catch(e){
+            console.log('err')
+      }
+  }
+
+  const dislikedPostArray = requiredUser[0].dislikedPosts
+  if (like1){
+    const id_p = requiredObject[0].id
+    const temp21 = [...dislikedPostArray,{id:1,id_p:id_p}]
+    try{
+      axios.post('http://localhost:3001/disliked/postupdate',{
+                          userName,
+                          temp21 
+          })
+          .then(res => { 
+                  if (res.data === 'updated'){
+                  }
+                  else if (res.data === 'error'){                            
+                      alert('Sorry! something went wrong')
+                  }
+          })
+          .catch(e => {
+              alert(e)
+          })
+    }
+    catch(e){
+          console.log('err')
+    }
+  }
+  else{
+      const id_p = requiredObject[0].id
+      const temp22 = dislikedPostArray.filter((single)=>(id_p !== single.id_p))
+      try{
+        axios.post('http://localhost:3001/dislikedd/postremove',{
+                            userName,
+                            temp22  
+            })
+            .then(res => { 
+                    if (res.data === 'updated'){
+                    }
+                    else if (res.data === 'error'){                            
+                        alert('Sorry! something went wrong')
+                    }
+            })
+            .catch(e => {
+                alert(e)
+            })
+      }
+      catch(e){
+            console.log('err')
+      }
   }
 
   const handleDisLike=()=>{
@@ -121,7 +237,6 @@ const Post = ({finalComment,userName,profileImage1,stateChecker,setstateChecker,
     updateInteraction()
     textbox.current.style.height="32px";
     setComment('')
-
   }
 
     const temp = requiredObject[0].userName

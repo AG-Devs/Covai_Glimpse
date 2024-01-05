@@ -13,6 +13,7 @@ import Post from './pages/Post';
 import EditProfile from './pages/EditProfile' 
 import TermsAndConditions from './TermsAndConditions';
 import VProfile from './pages/VProfile';
+import FollowedUsers from './pages/FollowedUsers';
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
   const[likeCount,setlikeCount]=useState(0)
   const[dislikeCount,setdislikeCount]=useState(0)
   const[followers,setfollowers]=useState(0)
-  const[likedPosts,setlikedPosts]=useState([{id_i:0,postId:0}])
+  const[likedPosts,setlikedPosts]=useState([{id_i:0,id_p:0}])
   const[dislikedPosts,setdislikedPosts]=useState([{id_i:0,postId:0}])
   const[commentedPosts,setcommentedPosts]=useState([{id_i:0,postId:0}])
   const[followedUsers,setfollowedUsers]=useState([])
@@ -119,8 +120,19 @@ function App() {
                                           live2={live2}
                                           setlive2={setlive2}
                                           userName={userName}
+                                          userDetailsArray={userDetailsArray}
+                                          setuserDetailsArray={setuserDetailsArray}
                                         />} 
                  /> 
+                 <Route path='followedusers' element={<FollowedUsers
+                 
+                                           userDetailsArray={userDetailsArray}
+                                           userName={userName}
+                                        />}
+                                       
+                                    
+                 />
+
                  <Route path='profile' element={<Profile 
                                                     userName={userName}
                                                     finalComment={finalComment}
@@ -172,6 +184,7 @@ function App() {
                  />
                  <Route path='touristspots' element={<TouristPlaces settoggle={settoggle} />} />
                  <Route path= {'post/:id'} element={<Post 
+                                                          userDetailsArray={userDetailsArray}
                                                           finalComment={finalComment}
                                                           setfinalComment={setfinalComment}
                                                           userName={userName}
@@ -182,6 +195,7 @@ function App() {
                                                           setLike={setLike}
                                                           like1={like1}
                                                           setLike1={setLike1}
+                                                          visit={visit}
                                                           setvisit={setvisit}
                                                           live2={live2}
                                                           setlive2={setlive2}

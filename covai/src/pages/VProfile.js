@@ -14,6 +14,10 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
     const requiredObject = finalComment.filter((single)=>(
         single.userName === visit
     ))
+  
+    const requiredObject8=userDetailsArray.filter((single)=>(
+        single.userName ===visit
+    ))
 
     let totalLikes = 0
     for (let i=0;i<=requiredObject.length-1;i++){
@@ -31,7 +35,6 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
 
     useEffect(()=>{
         settoggle(false)
-
         if (temp6.length){
             setfollow(false)
         }
@@ -83,9 +86,8 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
           }
 
         const id = filteredUser.followedUsers ? filteredUser.followedUsers[filteredUser.followedUsers.length-1].id + 1 : 1
-        const tempObj = {id_u:id,user:visit}
+        const tempObj = {id_u:id,user:visit,profileImage:filteredUser.profileImage ? filteredUser.profileImage : null }
         const temp4 = [...temp5,tempObj]
-        console.log(temp4)
         try{
             axios.post('https://covai-glimpse.onrender.com/followed/users',{
                                 userName,
@@ -145,7 +147,6 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
           const temp4 = temp5.filter((single)=>(
                                                 single.user !== visit
                                             ))
-        console.log(temp4)
           try{
             axios.post('https://covai-glimpse.onrender.com/unfollowed/people',{
                                 userName,
@@ -181,13 +182,13 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
             <div className='profileDetails'>
                     <div className='profilePic'>
                             <div className='profileVideo'>
-                                {profileVideo ?  
+                                { requiredObject8[0].profileVideo?  
                                     <div className='profileVideoDisplay'>
                                         <video muted autoPlay loop>
-                                            <source src={profileVideo}></source>
+                                            <source src={requiredObject8[0].profileVideo}></source>
                                         </video>
                                     </div>
-                                : profileImage1 ? <img src={profileImage1} alt=''></img>
+                                : requiredObject8[0].profileImage ? <img src={requiredObject8[0].profileImage} alt=''></img>
                                 : <img style={{height:'100%'}} src={require('.././images/userIcon.png')} alt=''></img>}
                             </div>
                             <h1>@{filteredUser.userName}</h1>

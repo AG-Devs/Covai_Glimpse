@@ -4,9 +4,7 @@ import axios from 'axios'
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
-const Feed = ({finalComment,setfinalComment,profileImage1,stateChecker,live2,setlive2,userName}) => { 
-
-  const [allusers,setallusers] =useState([])
+const Feed = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalComment,profileImage1,stateChecker,live2,setlive2,userName}) => { 
 
   useEffect(()=>{
         weatherApi()
@@ -25,7 +23,7 @@ const Feed = ({finalComment,setfinalComment,profileImage1,stateChecker,live2,set
             })
             .then(async (res)=> await res.json())
             .then( (data)=>{
-              setallusers(data.data)
+              setuserDetailsArray(data.data)
             })
             
   },[live2])
@@ -44,7 +42,7 @@ const Feed = ({finalComment,setfinalComment,profileImage1,stateChecker,live2,set
     }
   }
 
-  const requiredObject7 = allusers.filter((single)=>(
+  const requiredObject7 = userDetailsArray.filter((single)=>(
     userName === single.userName
   ))
   const temp9 = requiredObject7[0]
