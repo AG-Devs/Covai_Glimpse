@@ -3,6 +3,7 @@ const mongoose=require('mongoose')
 const newPostSchema= new mongoose.Schema({
     id:{type:String,required:false},
     userName:{type:String,required:true},
+    profileImages:{type:String,required:false},
     title:{type:String,required:true},
     message:{type:String,required:true},
     img:{type:String,required:false},

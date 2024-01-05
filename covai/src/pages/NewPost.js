@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './NewPost.css'
 import { format } from 'date-fns'
 import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios'
 
 
-const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeCount,dislikeCount,stateChecker,setstateChecker}) => {
+const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeCount,dislikeCount,stateChecker,setstateChecker,userDetailsArray}) => {
 
     const [title,settitle]= useState('')
     const [message,setmessage]=useState('')
@@ -19,11 +19,13 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeC
         e.preventDefault()
         const id = finalComment.length ? Number(finalComment[finalComment.length-1].id)+1 : 1 ;   
         const postComment = [{id1:1,userName:userName,Comment:'hi'}]
+        const profileImage4 = null
 
         try{
             axios.post('https://covai-glimpse.onrender.com/new/post',{
                                     id,
                                     userName,
+                                    profileImage4,
                                     title,
                                     message,
                                     img,
@@ -46,8 +48,6 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeC
                 .catch(e => {
                     alert(e)
                 })
-        setstateChecker(!stateChecker)
-
         }
         catch(e){
                     console.log(e)

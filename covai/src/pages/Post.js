@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './Post.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { GrSend } from "react-icons/gr";
@@ -8,14 +8,9 @@ import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,like,setLike,like1,setLike1,interactionsArray,setinteractionsArray,setvisit}) => {
+const Post = ({finalComment,userName,profileImage1,stateChecker,setstateChecker,like,setLike,like1,setLike1,interactionsArray,setinteractionsArray,setvisit,live2,setlive2}) => {
 
-  
-  const[liked,setliked]=useState(true)
-  const[disliked,setdisliked]=useState(true)
-
-  const [Comment,setComment] = useState('')
-  const navigateTo = useNavigate()
+  const [filteredUser3,setfilteredUser3]=useState({})
 
   const id = useParams()
   const Id = id.id
@@ -24,6 +19,35 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,l
     Number(Id) === Number(post.id)
   ))
   
+  const visited = requiredObject[0].userName
+
+  useEffect(()=>{
+    setlive2(false)
+    try{
+        axios.post('http://localhost:3001/postsuser/username',{visited})
+        .then(res =>{
+          if (res.data){
+              setfilteredUser3(res.data.data)
+          }
+          else if (res.data === 'not exist'){
+              alert('Incorrect username / password')
+          }
+        })
+        .catch(e=>{
+              alert('Sorry! something went wrong')
+        })
+  }
+  catch(e){
+      alert('error')
+  }
+ },[live2])
+  
+  const[liked,setliked]=useState(true)
+  const[disliked,setdisliked]=useState(true)
+
+  const [Comment,setComment] = useState('')
+  const navigateTo = useNavigate()
+
   const temp2 = requiredObject[0].postComment
 
   const textbox=useRef(null)  
@@ -134,9 +158,9 @@ const Post = ({finalComment,userName,profileImage,stateChecker,setstateChecker,l
       <div className='singlePostContent'>
          <div className='postContent'>
               <div className='userInfo'>
-                    {profileImage 
+                    {filteredUser3.profileImage
                         ? 
-                        <img src={profileImage} alt=''/> 
+                        <img src={filteredUser3.profileImage} alt=''/> 
                         : 
                       <img src={require('.././images/userIcon.png')} alt=''/>
                     }

@@ -4,10 +4,9 @@ import {Link} from 'react-router-dom'
 import { AiFillDelete } from "react-icons/ai";
 import axios from 'axios';
 
-const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage,setprofileImage,finalComment,navigate,userName,settoggle,totalLikes,totalPosts,followers}) => {
+const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage1,setprofileImage1,finalComment,navigate,userName,settoggle,followers,live2,setlive2}) => {
 
     const [filteredUser,setfilteredUser]=useState({})
-    const [live2,setlive2]=useState(false)
 
     const requiredObject = finalComment.filter((single)=>(
         single.userName === userName
@@ -20,6 +19,7 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
 
     useEffect(()=>{
         settoggle(false)
+        setlive2(false)
         try{
             axios.post('https://covai-glimpse.onrender.com/single/profile',{userName})
             .then(res =>{
@@ -54,22 +54,25 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
     const handleProfileUpload = (e)=>{
         try{
             const temp = e.target.files[0] ? e.target.files[0] : ''
-            setprofileImage(URL.createObjectURL(temp))
+            const temp7 = URL.createObjectURL(temp)
+            setprofileImage1(temp7)
             requiredObject1[0].profileImage = temp
-            setprofilePic(null)
             settick(true)
-            sendImgToDataBase(profileImage)
+            sendImgToDataBase(temp7)
+            updateFeedImg(temp7)
+            setprofilePic(null)
         }
         catch(err){
-            handleDelete()
+            alert(err)
         }
     }
     const handleDelete=(()=>{      
-        setprofileImage(null)
+        setprofileImage1(null)
         setprofilePic(null)
         settick(false)
+        deleteProfileImg()
     })
-    const handlevideodelete=(()=>{ 
+    const handlevideodelete=(()=>{      
         setprofileVideo(null)
         settick(false)
         sendToDataBase()
@@ -88,24 +91,53 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
               else{
                 alert('error')
               }  
-            });    
+            });       
   }
-      const sendImgToDataBase = (temp)=>{
-        const profileImage2 = temp.length ? temp : null
-        axios.post('https://covai-glimpse.onrender.com/send/profileimg',{
+      const sendImgToDataBase = (profileImage3)=>{
+        const profileImage2 = profileImage3 ? profileImage3 : null
+        axios.post('http://localhost:3001/send/profileimg',{
               userName,
               profileImage2
             })
             .then(res =>{
               if(res.data==='updated'){
-                alert('done')
               }
               else{
                 alert('error')
               }  
             });
-            
+     setlive2(true)
   }
+      const updateFeedImg = (profileImage5)=>{
+        const profileImage6 = profileImage5 ? profileImage5 : null
+        axios.post('http://localhost:3001/change/feedimg',{
+              userName,
+              profileImage6
+            })
+            .then(res =>{
+              if(res.data==='updated'){
+              }
+              else{
+                alert('err')
+              }  
+            });
+  }
+
+  const deleteProfileImg = ()=>{
+    const profileImage2 = null
+    axios.post('http://localhost:3001/deleting/profileimage',{
+          userName,
+          profileImage2
+        })
+        .then(res =>{
+          if(res.data==='updated'){
+          }
+          else{
+            alert('error')
+          }  
+        }); 
+    setlive2(true)      
+}
 
   return (
     <div className='profilePage'>

@@ -1,11 +1,12 @@
 const Post=require('../models/PostModel.cjs')
 
 const newPost= async (req,res)=>{
-    const {id,userName,title,message, img, dateTime, likeCount, dislikeCount, postComment} = req.body
+    const {id,userName,profileImage4,title,message, img, dateTime, likeCount, dislikeCount, postComment} = req.body
 
     const data = {
         id:id,
         userName:userName,
+        profileImage : profileImage4,
         title:title,
         message:message,
         img:img,
@@ -40,7 +41,18 @@ const updatePost = async (req,res)=>{
         res.json('error')
     }
 }
-
+const updateFeedImage = async (req,res)=>{
+    const {userName,profileImage6}=req.body
+    try{
+      await Post.updateMany({userName:userName},{$set:{
+                                                         profileImages : profileImage6,
+                                                    }})
+      res.json('updated')                                                
+    }
+    catch(e){
+        res.json(e)
+    }
+}
 
 const deletePost = async (req,res)=>{
     const {name1,id} = req.body
@@ -65,6 +77,7 @@ const getAllPosts = async (req,res)=>{
 module.exports = {
         newPost,
         updatePost,
+        updateFeedImage,
         deletePost,
         getAllPosts
 }

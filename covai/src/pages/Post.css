@@ -43,7 +43,7 @@
     align-items: center;
     gap: 2%;
 }
-.userInfo > Link>img {
+.userInfo >img {
     height: 100%;
     width: 7%;
     border-radius: 100%;

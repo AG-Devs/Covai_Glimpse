@@ -28,7 +28,7 @@ function App() {
   const[gender,setgender]=useState(null)
   const[age,setage]=useState(null)
   const[profileVideo,setprofileVideo]=useState(null)
-  const[profileImage,setprofileImage]=useState(null)
+  const[profileImage1,setprofileImage1]=useState(null)
   const[likeCount,setlikeCount]=useState(0)
   const[dislikeCount,setdislikeCount]=useState(0)
   const[followers,setfollowers]=useState(0)
@@ -44,14 +44,16 @@ function App() {
   const[like,setLike]=useState(false)
   const[like1,setLike1]=useState(false)
 
+  const [live2,setlive2]=useState(false)
+
   const handleProfileVideo=((e)=>{
     setprofileVideo(URL.createObjectURL(e.target.files[0]))
     settick(true)
   })
 
 
-  const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',title:"welcome",img:null,message:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
-  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage:profileImage,profileVideo:profileVideo,followers:followers,likedPosts:likedPosts,dislikedPosts:dislikedPosts,commentedPosts:commentedPosts,Notification:[{messages:'no message'}]}])
+  const [finalComment,setfinalComment] = useState([{id:0,userName:'Covai_Glimpse',profileImages:null,title:"welcome",img:null,message:"how are you?",time:'16-12-2023/20-08',likeCount:0,disLikeCount:0, postComment:[{id1:1,userName:'Covai_Glimpse',Comment:'hi'}]}])
+  const [userDetailsArray,setuserDetailsArray] = useState([{id:0,userName:userName,password:Password,mobilenumber:mobilenumber,age:age,gmail:gmail,gender:gender,profileImage1:profileImage1,profileVideo:profileVideo,followers:followers,likedPosts:likedPosts,dislikedPosts:dislikedPosts,commentedPosts:commentedPosts,Notification:[{messages:'no message'}]}])
 
   return (
     <div className="App">
@@ -100,9 +102,11 @@ function App() {
                 settoggle={settoggle}
                 search={search}
                 setsearch={setsearch}
-                profileImage={profileImage}
+                profileImage1={profileImage1}
                 userDetailsArray={userDetailsArray}
                 setuserDetailsArray={setuserDetailsArray}
+                live2={live2}
+                setlive2={setlive2}
               />
             }>
                  <Route index element={<Feed 
@@ -110,20 +114,25 @@ function App() {
                                               single.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
                                           ))}
                                           setfinalComment = {setfinalComment}
-                                          profileImage={profileImage}
+                                          profileImage1={profileImage1}
                                           stateChecker={stateChecker}
+                                          live2={live2}
+                                          setlive2={setlive2}
+                                          userName={userName}
                                         />} 
                  /> 
                  <Route path='profile' element={<Profile 
                                                     userName={userName}
                                                     finalComment={finalComment}
                                                     setprofileVideo={setprofileVideo}
-                                                    profileImage={profileImage}
-                                                    setprofileImage={setprofileImage}
+                                                    profileImage1={profileImage1}
+                                                    setprofileImage1={setprofileImage1}
                                                     profileVideo={profileVideo}
                                                     settoggle={settoggle}
                                                     userDetailsArray={userDetailsArray}
                                                     setuserDetailsArray={setuserDetailsArray}
+                                                    live2 = {live2}
+                                                    setlive2 = {setlive2}
                                                 />} 
                   />
                   <Route path='visitprofile' element={<VProfile 
@@ -131,8 +140,8 @@ function App() {
                                                   setuserName={setuserName}
                                                   finalComment={finalComment}
                                                   setprofileVideo={setprofileVideo}
-                                                  profileImage={profileImage}
-                                                  setprofileImage={setprofileImage}
+                                                  profileImage1={profileImage1}
+                                                  setprofileImage1={setprofileImage1}
                                                   profileVideo={profileVideo}
                                                   settoggle={settoggle}
                                                   userDetailsArray={userDetailsArray}
@@ -158,6 +167,7 @@ function App() {
                                                     likeCount = {likeCount}
                                                     stateChecker={stateChecker}
                                                     setstateChecker={setstateChecker}
+                                                    userDetailsArray={userDetailsArray}
                                                 />} 
                  />
                  <Route path='touristspots' element={<TouristPlaces settoggle={settoggle} />} />
@@ -165,7 +175,7 @@ function App() {
                                                           finalComment={finalComment}
                                                           setfinalComment={setfinalComment}
                                                           userName={userName}
-                                                          profileImage={profileImage}
+                                                          profileImage1={profileImage1}
                                                           stateChecker={stateChecker}
                                                           setstateChecker={setstateChecker}
                                                           like={like}
@@ -173,6 +183,8 @@ function App() {
                                                           like1={like1}
                                                           setLike1={setLike1}
                                                           setvisit={setvisit}
+                                                          live2={live2}
+                                                          setlive2={setlive2}
                                                       />} 
                  />
                 <Route path='editprofile' element={<EditProfile 

@@ -16,7 +16,7 @@ const Header = ({settoggle,setsearch,search}) => {
 
   return (
     <div className='Header'>
-      <img src={require('.././images/userIcon.png')} alt='logo'></img>
+      <img src={require('.././images/official_logo.jpg')} alt='logo'></img>
       <h1>Covai Glimpse</h1>
       <Search 
        serach={search}

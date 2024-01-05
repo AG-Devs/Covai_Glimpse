@@ -53,6 +53,21 @@ const getSingleUser = async(req,res) => {
             res.json('error')
         }
 }
+const getSingleUsername = async(req,res) => {
+        const {visited} = req.body 
+        try{
+            const data = await User.findOne({userName:visited})
+            if (data){
+                res.send({data:data})
+            }
+            else{
+                res.json('not exist')
+            }
+        }
+        catch(e){
+            res.json('error')
+        }
+}
 
 const getVisitedUser = async(req,res) => {
     const {visit} = req.body 
@@ -183,6 +198,19 @@ const deleteProfileVideo = async (req,res)=>{
         res.json(e)
     }
 }
+const deleteProfileImage = async (req,res)=>{
+    const {userName,profileImage2}=req.body
+    try{
+      await User.updateOne({userName:userName},{$set:{
+                                                        profileImage:profileImage2
+                                                    }})
+      res.json('updated')                                                
+    }
+    catch(e){
+        res.json(e)
+    }
+}
+
 const updateProfileImage = async (req,res)=>{
     const {userName,profileImage2}=req.body
     try{
@@ -201,6 +229,7 @@ module.exports = {
     getOneUser,
     getAllUsers,
     getSingleUser,
+    getSingleUsername,
     updateFollow,
     updateFollowedUsers,
     updateUnfollowedUsers,
@@ -209,5 +238,6 @@ module.exports = {
     getVisitedUser,
     editProfile,
     deleteProfileVideo,
+    deleteProfileImage,
     updateProfileImage
    }

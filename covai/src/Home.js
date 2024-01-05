@@ -4,7 +4,7 @@ import LeftSideBar from './homeComponents/LeftSideBar'
 import RightSideBar from './homeComponents/RightSideBar'
 import { Outlet } from 'react-router-dom'
 
-const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search,profileImage,userDetailsArray,setuserDetailsArray}) => {
+const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search,profileImage,userDetailsArray,setuserDetailsArray,live2,setlive2}) => {
   useEffect(()=>{
         fetch('https://covai-glimpse.onrender.com/getall/user', {
                 method:"GET",
@@ -13,8 +13,8 @@ const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search,profileI
             .then( (data)=>{
               setuserDetailsArray(data.data)
             })
-            
   },[])
+
   return (
     <div>
         <Header 
@@ -26,6 +26,9 @@ const Home = ({userName,data,navigate,toggle,settoggle,setsearch,search,profileI
             userName={userName}
             settoggle={settoggle}
             profileImage={profileImage}
+            userDetailsArray = {userDetailsArray}
+            live2={live2}
+            setlive2={setlive2}
         />        
         {toggle ? <RightSideBar 
                       navigate={navigate} 

@@ -3,7 +3,7 @@ import './visitProfile.css'
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 
-const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage,setprofileImage,finalComment,navigate,userName,settoggle,followers,visit,Notification,followedUsers,setfollowedUsers,Notifications,setNotifications}) => {
+const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage1,setprofileImage1,finalComment,navigate,userName,settoggle,followers,visit,Notification,followedUsers,setfollowedUsers,Notifications,setNotifications}) => {
     
     
     const [filteredUser,setfilteredUser]=useState({})
@@ -187,7 +187,7 @@ const VProfile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileV
                                             <source src={profileVideo}></source>
                                         </video>
                                     </div>
-                                : profileImage ? <img src={profileImage} alt=''></img>
+                                : profileImage1 ? <img src={profileImage1} alt=''></img>
                                 : <img style={{height:'100%'}} src={require('.././images/userIcon.png')} alt=''></img>}
                             </div>
                             <h1>@{filteredUser.userName}</h1>

@@ -13,11 +13,13 @@ router.post('/people',userController.updateUnfollowedUsers)
 
 router.post('/post',postController.newPost) 
 router.post('/update',postController.updatePost) 
+router.post('/feedimg',postController.updateFeedImage) 
 router.post('/delete',postController.deletePost) 
 
 router.get('/feed',postController.getAllPosts) 
 
 router.post('/profile',userController.getSingleUser)
+router.post('/username',userController.getSingleUsername)
 router.post('/notification',userController.getSingleUser)
 
 router.post('/profiles',userController.getVisitedUser)
@@ -25,5 +27,6 @@ router.post('/profiles',userController.getVisitedUser)
 router.post('/profiledit',userController.editProfile)
 router.post('/profilevideo',userController.deleteProfileVideo)
 router.post('/profileimg',userController.updateProfileImage)
+router.post('/profileimage',userController.deleteProfileImage)
 
 module.exports=router
