@@ -87,13 +87,15 @@ const LikedPost = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalCo
     else {
       updatePostProfilePic2()
     }
-  
+    
+    const temp23rev = temp23.slice(0).reverse()
+
     return (
       <div className='feed'>
          <p style={{fontSize:'160%',fontWeight:'bold',color:'blueviolet'}}>You Liked These Posts!!</p>
         <div className='feedDisplay'>
            
-            {temp23.map((singlePost)=>(
+            {temp23rev.map((singlePost)=>(
               <Link to={`/home/post/${singlePost.id}`}>
                 <div className='post'>
                   {(singlePost.message).length > 270 ? 

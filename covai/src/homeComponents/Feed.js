@@ -84,6 +84,8 @@ const Feed = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalComment
     updatePostProfilePic2()
   }
 
+  const finalCommentrev = finalComment.slice(0).reverse()
+
   return (
     <div className='feed'>
       <div className='feedDisplay'>
@@ -115,7 +117,7 @@ const Feed = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalComment
                     'Sorry,Server is busy'
                   }
               </div>
-          {finalComment.map((singlePost)=>(
+          {finalCommentrev.map((singlePost)=>(
             <Link to={`/home/post/${singlePost.id}`}>
               <div className='post'>
                 {(singlePost.message).length > 270 ? 

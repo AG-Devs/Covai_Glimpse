@@ -30,12 +30,13 @@ const FollowedUsers = ({userDetailsArray,setuserDetailsArray,userName,setvisit})
          tempf = [...tempf,tem[0]]      
      }
    }
-   console.log(tempf)
+   
+   const tempf2= tempf.slice(0).reverse()
 
   return (
     <div className='icons'>
       
-     {tempf.map((single)=>(
+     {tempf2.map((single)=>(
       <div className='followedusers'>
         {single.profileImage ? <img src={single.profileImage}/>
                              : <img src={require('../images/userIcon.png')}/>}
