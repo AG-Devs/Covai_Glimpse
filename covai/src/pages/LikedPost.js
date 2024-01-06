@@ -1,7 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import '../homeComponents/Feed.css'
 import axios from 'axios'
-import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
 const LikedPost = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalComment,profileImage1,stateChecker,live2,setlive2,userName}) => {
@@ -27,14 +26,29 @@ const LikedPost = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalCo
               
     },[live2])
   
-
-   console.log(userDetailsArray)
-  
-  
-  
     const requiredObject7 = userDetailsArray.filter((single)=>(
       userName === single.userName
     ))
+    const requiredObject9=requiredObject7[0].likedPosts?requiredObject7[0].likedPosts:null
+
+    let temp23=[]
+
+    for(let i=0;i<=requiredObject9.length-1;i++){
+
+    const temp25= finalComment.filter((single)=>(
+
+      single.id===requiredObject9[i].id_p))
+
+     if(temp25.length){
+      temp23=[...temp23,temp25[0]]
+     }
+          
+  }
+  console.log(temp23)
+  
+  
+  
+    
     const temp9 = requiredObject7[0]
   
     const updatePostProfilePic = ()=>{
@@ -79,7 +93,7 @@ const LikedPost = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalCo
          <p style={{fontSize:'160%',fontWeight:'bold',color:'blueviolet'}}>You Liked These Posts!!</p>
         <div className='feedDisplay'>
            
-            {finalComment.map((singlePost)=>(
+            {temp23.map((singlePost)=>(
               <Link to={`/home/post/${singlePost.id}`}>
                 <div className='post'>
                   {(singlePost.message).length > 270 ? 

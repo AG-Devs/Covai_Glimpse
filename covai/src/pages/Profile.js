@@ -59,43 +59,12 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
             requiredObject1[0].profileImage = temp
             settick(true)
             sendImgToDataBase(temp7)
-            updateAllUsers()
             updateFeedImg(temp7)
             setprofilePic(null)
         }
         catch(err){
             alert(err)
         }
-    }
-    const updateAllUsers = ()=>{
-      let a1 = []
-      for (let i=0;i<=userDetailsArray.length-1;i++){
-         const a2 = userDetailsArray[i].followedUser.filter((single)=>(single.user === userName))
-         if (a2.length){
-              a1 = [...a1,userDetailsArray[i]]
-         }
-      }
-      console.log(a1)
-         const id = requiredObject1[0].followedUsers ? requiredObject1[0].followedUsers[requiredObject1[0].followedUsers.length-1].id + 1 : 1
-          const tempObj = {id_u:id,user:visit,profileImage:requiredObject1[0].profileImage ? requiredObject1[0].profileImage : null }
-          const temp4 = [tempObj]
-          a1.map((single)=>(
-              axios.post('http://localhost:3001/followedd/userss',{
-                                  userName1:single.userName,
-                                  temp4
-                  })
-                  .then(res => { 
-                          if (res.data === 'done'){
-                              
-                          }
-                          else if (res.data === 'error'){                            
-                              alert('Sorry! something went wrong')
-                          }
-                  })
-                  .catch(e => {
-                      alert(e)
-                  })
-            ))
     }
 
     const handleDelete=(()=>{      

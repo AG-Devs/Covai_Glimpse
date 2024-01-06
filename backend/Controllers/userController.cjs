@@ -53,6 +53,21 @@ const getSingleUser = async(req,res) => {
             res.json('error')
         }
 }
+const getSingleUser2 = async(req,res) => {
+        const {userName2} = req.body 
+        try{
+            const data = await User.findOne({userName:userName2})
+            if (data){
+                res.send({data:data})
+            }
+            else{
+                res.json('not exist')
+            }
+        }
+        catch(e){
+            res.json('error')
+        }
+}
 const getSingleUsername = async(req,res) => {
         const {visited} = req.body 
         try{
@@ -147,11 +162,11 @@ const updateFollowedUsers = async (req,res)=>{
     }
 }
 const updateFollowedUsers2 = async (req,res)=>{
-    const {userName1,temp4} = req.body
+    const {userName1,temp41} = req.body
     try{
         await User.updateOne({userName:userName1},{
             $set:{
-                followedUser:temp4
+                followedUser:temp41
             }
         })
         res.json('done')
@@ -292,6 +307,7 @@ module.exports = {
     getOneUser,
     getAllUsers,
     getSingleUser,
+    getSingleUser2,
     getSingleUsername,
     updateFollow,
     updateFollowedUsers,

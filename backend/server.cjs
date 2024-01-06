@@ -29,6 +29,7 @@ app.use("/dislikedd",routeUrls)
 app.use("/display",routeUrls)
 
 app.use("/single",routeUrls)
+app.use("/single2",routeUrls)
 app.use("/postsuser",routeUrls)
 app.use("/getting",routeUrls)
 app.use("/visited",routeUrls)

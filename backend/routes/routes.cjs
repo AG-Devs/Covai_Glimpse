@@ -24,6 +24,7 @@ router.post('/delete',postController.deletePost)
 router.get('/feed',postController.getAllPosts) 
 
 router.post('/profile',userController.getSingleUser)
+router.post('/profile2',userController.getSingleUser2)
 router.post('/username',userController.getSingleUsername)
 router.post('/notification',userController.getSingleUser)
 

@@ -115,7 +115,7 @@ const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker
       setLike1(false)
       updateInteraction()
   }
-
+   
   const requiredUser = userDetailsArray.filter((single)=>(single.userName === userName))
   const likedPostArray = requiredUser[0].likedPosts
   if (like){
