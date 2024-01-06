@@ -46,7 +46,7 @@ const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker
             })
 
     try{
-        axios.post('http://localhost:3001/postsuser/username',{visited})
+        axios.post('https://covai-glimpse.onrender.com/postsuser/username',{visited})
         .then(res =>{
           if (res.data){
               setfilteredUser3(res.data.data)
@@ -122,7 +122,7 @@ const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker
     const id_p = requiredObject[0].id
     const temp11 = [...likedPostArray,{id:1,id_p:id_p}]
     try{
-      axios.post('http://localhost:3001/liked/postsupdate',{
+      axios.post('https://covai-glimpse.onrender.com/liked/postsupdate',{
                           userName,
                           temp11  
           })
@@ -145,7 +145,7 @@ const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker
       const id_p = requiredObject[0].id
       const temp12 = likedPostArray.filter((single)=>(id_p !== single.id_p))
       try{
-        axios.post('http://localhost:3001/likedd/postsremove',{
+        axios.post('https://covai-glimpse.onrender.com/likedd/postsremove',{
                             userName,
                             temp12  
             })
@@ -170,7 +170,7 @@ const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker
     const id_p = requiredObject[0].id
     const temp21 = [...dislikedPostArray,{id:1,id_p:id_p}]
     try{
-      axios.post('http://localhost:3001/disliked/postupdate',{
+      axios.post('https://covai-glimpse.onrender.com/disliked/postupdate',{
                           userName,
                           temp21 
           })
@@ -193,7 +193,7 @@ const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker
       const id_p = requiredObject[0].id
       const temp22 = dislikedPostArray.filter((single)=>(id_p !== single.id_p))
       try{
-        axios.post('http://localhost:3001/dislikedd/postremove',{
+        axios.post('https://covai-glimpse.onrender.com/dislikedd/postremove',{
                             userName,
                             temp22  
             })

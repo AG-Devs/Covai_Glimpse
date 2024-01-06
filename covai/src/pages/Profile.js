@@ -7,6 +7,7 @@ import axios from 'axios';
 const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVideo,profileImage1,setprofileImage1,finalComment,navigate,userName,settoggle,followers,live2,setlive2,visit}) => {
 
     const [filteredUser,setfilteredUser]=useState({})
+    const [profileImage3,setprofileImage3]=useState({})
 
     const requiredObject = finalComment.filter((single)=>(
         single.userName === userName
@@ -54,12 +55,19 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
     const handleProfileUpload = (e)=>{
         try{
             const temp = e.target.files[0] ? e.target.files[0] : ''
-            const temp7 = URL.createObjectURL(temp)
-            setprofileImage1(temp7)
+
+            var reader = new FileReader()
+            reader.readAsDataURL(e.target.files[0])
+            reader.onload = () =>{
+                sendImgToDataBase(reader.result)
+                setprofileImage1(reader.result)
+                updateFeedImg(reader.result)
+            }
+            reader.onerror = err =>{
+                console.log('err')
+            }
             requiredObject1[0].profileImage = temp
             settick(true)
-            sendImgToDataBase(temp7)
-            updateFeedImg(temp7)
             setprofilePic(null)
         }
         catch(err){
@@ -102,12 +110,13 @@ const temp20=temp19[0].followedUser
       const sendImgToDataBase = (profileImage3)=>{
 
         const profileImage2 = profileImage3 ? profileImage3 : null
-        axios.post('http://localhost:3001/send/profileimg',{
+        axios.post('https://covai-glimpse.onrender.com/send/profileimg',{
               userName,
               profileImage2
             })
             .then(res =>{
               if(res.data==='updated'){
+                alert('hisss')
               }
               else{
                 alert('error')
@@ -117,7 +126,7 @@ const temp20=temp19[0].followedUser
   }
       const updateFeedImg = (profileImage5)=>{
         const profileImage6 = profileImage5 ? profileImage5 : null
-        axios.post('http://localhost:3001/change/feedimg',{
+        axios.post('https://covai-glimpse.onrender.com/change/feedimg',{
               userName,
               profileImage6
             })
@@ -132,7 +141,7 @@ const temp20=temp19[0].followedUser
 
   const deleteProfileImg = ()=>{
     const profileImage2 = null
-    axios.post('http://localhost:3001/deleting/profileimage',{
+    axios.post('https://covai-glimpse.onrender.com/deleting/profileimage',{
           userName,
           profileImage2
         })

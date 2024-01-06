@@ -3,9 +3,14 @@ const mongoose=require('mongoose')
 const app = express()
 const dotenv=require('dotenv')
 const routeUrls=require('./routes/routes.cjs')
+const bodyParser = require("body-parser")
 const cors=require('cors')
 
 dotenv.config()
+
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+app.use(express.json());
 
 mongoose.connect(process.env.MONGOOSE_URL)
 

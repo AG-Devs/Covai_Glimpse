@@ -54,7 +54,7 @@ const LikedPost = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalCo
     const updatePostProfilePic = ()=>{
       const profileImage5 = requiredObject7[0].profileImage
       const profileImage6 = profileImage5 ? profileImage5 : null
-          axios.post('http://localhost:3001/change/feedimg',{
+          axios.post('https://covai-glimpse.onrender.com/change/feedimg',{
                 userName,
                 profileImage6
               })
@@ -68,7 +68,7 @@ const LikedPost = ({userDetailsArray,setuserDetailsArray,finalComment,setfinalCo
     }
     const updatePostProfilePic2 = ()=>{
       const profileImage6 =  null
-          axios.post('http://localhost:3001/change/feedimg',{
+          axios.post('https://covai-glimpse.onrender.com/change/feedimg',{
                 userName,
                 profileImage6
               })

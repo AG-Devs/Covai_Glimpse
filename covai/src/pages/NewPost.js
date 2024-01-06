@@ -56,8 +56,14 @@ const NewPost = ({navigate,settoggle,finalComment,setfinalComment,userName,likeC
 
     const handleImage = (e)=>{
         try{
-            const temp = e.target.files[0] ? e.target.files[0] : ''
-            setimg(URL.createObjectURL(temp))
+            var reader = new FileReader()
+            reader.readAsDataURL(e.target.files[0])
+            reader.onload = () =>{
+                setimg(reader.result)
+            }
+            reader.onerror = err =>{
+                console.log('err')
+            }
             setuploadImage(null)
             settick(true)
         }
