@@ -14,6 +14,8 @@ import EditProfile from './pages/EditProfile'
 import TermsAndConditions from './TermsAndConditions';
 import VProfile from './pages/VProfile';
 import FollowedUsers from './pages/FollowedUsers';
+import LikedPost from './pages/LikedPost'
+
 
 function App() {
 
@@ -135,6 +137,22 @@ function App() {
                                     
                  />
 
+                 <Route path='likedposts' element={<LikedPost
+                                          finalComment={finalComment.filter((single)=>(
+                                            single.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+                                        ))}
+                                        setfinalComment = {setfinalComment}
+                                        profileImage1={profileImage1}
+                                        stateChecker={stateChecker}
+                                        live2={live2}
+                                        setlive2={setlive2}
+                                        userName={userName}
+                                        userDetailsArray={userDetailsArray}
+                                        setuserDetailsArray={setuserDetailsArray}
+                                                  />}
+                 
+                 />
+
                  <Route path='profile' element={<Profile 
                                                     userName={userName}
                                                     finalComment={finalComment}
@@ -148,7 +166,7 @@ function App() {
                                                     live2 = {live2}
                                                     setlive2 = {setlive2}
                                                     visit={visit}
-                                                   
+                                                    
                                                 />} 
                   />
                   <Route path='visitprofile' element={<VProfile 

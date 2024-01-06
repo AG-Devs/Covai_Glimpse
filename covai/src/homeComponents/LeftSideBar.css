@@ -70,7 +70,7 @@
 }
 .logout{
     position: relative;
-    top: 45%;
+    top: 35%;
     left: 35%;
     height: 10%;
     width: 100%;
@@ -101,6 +101,34 @@
     
 }
 .followuser{
+    font-size: 97%;
+    background-color: transparent;
+    color: blueviolet;
+    margin: 0%;
+    font-weight: bold;
+}
+.like{
+      
+    height: 10%;
+    width: 100%;
+    font-size: 115%;
+    font-weight: bold;
+    background-color: transparent;
+    display: flex;
+    gap: 2%;
+    align-items: center;
+
+}
+.like>svg{
+
+    height: 55%;
+    width: 11%;
+    margin:8%;
+    background-color: transparent;
+    color: blueviolet;
+
+}
+.likedpost{
     font-size: 97%;
     background-color: transparent;
     color: blueviolet;

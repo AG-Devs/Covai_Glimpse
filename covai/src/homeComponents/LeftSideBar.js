@@ -3,6 +3,7 @@ import './LeftSideBar.css'
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiUserFollowLine } from "react-icons/ri";
+import { BiLike } from "react-icons/bi";
 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -70,6 +71,10 @@ const LeftSideBar = ({userName,settoggle,profileImage1,userDetailsArray,live2,se
       <RiUserFollowLine />
       <Link to='/home/followedusers'><p className='followuser'>FollowedUsers</p></Link> 
       </div> 
+      <div className='like'>
+        <BiLike />
+        <Link to='/home/likedposts'><p className='likedpost'>Liked Posts</p></Link>
+      </div>
       <Link to='/'><p className='logout'>Logout</p></Link>
     </div>
   )

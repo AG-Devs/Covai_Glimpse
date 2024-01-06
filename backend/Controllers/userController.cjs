@@ -146,6 +146,20 @@ const updateFollowedUsers = async (req,res)=>{
         res.json('error')
     }
 }
+const updateFollowedUsers2 = async (req,res)=>{
+    const {userName1,temp4} = req.body
+    try{
+        await User.updateOne({userName:userName1},{
+            $set:{
+                followedUser:temp4
+            }
+        })
+        res.json('done')
+    }
+    catch(err){
+        res.json('error')
+    }
+}
 const updateUnfollowedUsers = async (req,res)=>{
     const {userName,temp4} = req.body
     try{
@@ -281,6 +295,7 @@ module.exports = {
     getSingleUsername,
     updateFollow,
     updateFollowedUsers,
+    updateFollowedUsers2,
     updateUnfollowedUsers,
     updateUnfollow,
     updateLikedPosts,
