@@ -103,9 +103,11 @@ const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker
   }
 
   const handleLike=()=>{
-      const result= liked ? requiredObject[0].likeCount+1 : requiredObject[0].likeCount === 0 ?  0 : requiredObject[0].likeCount-1
-      const result2 = requiredObject[0].dislikeCount === 0 ? 0 : requiredObject[0].dislikeCount-1
-      requiredObject[0].dislikeCount = result2
+      const result= !like ? requiredObject[0].likeCount+1 : requiredObject[0].likeCount === 0 ?  0 : requiredObject[0].likeCount-1
+      if (like1){
+          const result2 = requiredObject[0].dislikeCount === 0 ? 0 : requiredObject[0].dislikeCount-1
+          requiredObject[0].dislikeCount = result2
+      }
       setliked(!liked)
       setdisliked(true)
       requiredObject[0].likeCount = result
@@ -212,9 +214,11 @@ const Post = ({userDetailsArray,finalComment,userName,profileImage1,stateChecker
   }
 
   const handleDisLike=()=>{
-      const result= disliked ? requiredObject[0].dislikeCount+1 : requiredObject[0].dislikeCount === 0 ?  0 : requiredObject[0].dislikeCount-1
-      const result2 = requiredObject[0].likeCount === 0 ? 0 : requiredObject[0].likeCount-1
-      requiredObject[0].likeCount = result2
+      const result= !like1 ? requiredObject[0].dislikeCount+1 : requiredObject[0].dislikeCount === 0 ?  0 : requiredObject[0].dislikeCount-1
+      if (like){
+          const result2 = requiredObject[0].likeCount === 0 ? 0 : requiredObject[0].likeCount-1
+          requiredObject[0].likeCount = result2
+      }
       setdisliked(!disliked)
       setliked(true)
       requiredObject[0].dislikeCount = result

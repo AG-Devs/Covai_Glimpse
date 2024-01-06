@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import './Notification.css'
 
-const Notification = ({userName}) => {
+const Notification = ({userName,userDetailsArray}) => {
   const [filteredUser,setfilteredUser]=useState({})
     useEffect(()=>{
        
@@ -26,11 +26,9 @@ const Notification = ({userName}) => {
           alert('error')
       }
      },[])
+     const temp23=userDetailsArray.filter((single)=>single.userName===userName)
 
   const[notification,setnotification]=useState(true)
-  const[notificationList,setnotificationList]=useState([{userName:'gokul',notification:[{id:1,message:'hi'}]}])
-  const temp3 = filteredUser.messages ? filteredUser.messages : 'hi'
-  console.log(temp3)
 
   return (
     <div className='notificationPage'>
@@ -38,12 +36,12 @@ const Notification = ({userName}) => {
       <div className='notificationPage2'>
         <div className='notificationPage3' onClick ={()=>{setnotification(false)}}>
           <h1>Check Out Your Notification</h1>
-              {filteredUser.messages ? temp3.map((single)=>(
+              {temp23[0].messages.length ? temp23[0].messages.map((single)=>(
                                                           <div className='notificationPage4'>
                                                             <p>{single.message}</p>
                                                             </div>
                                                           )) 
-              : 'No notification' }
+              : <h2>No notification</h2> }
         </div>
       </div>
     

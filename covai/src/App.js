@@ -128,6 +128,8 @@ function App() {
                  
                                            userDetailsArray={userDetailsArray}
                                            userName={userName}
+                                           setvisit={setvisit}
+                                           setuserDetailsArray={setuserDetailsArray}
                                         />}
                                        
                                     
@@ -145,6 +147,8 @@ function App() {
                                                     setuserDetailsArray={setuserDetailsArray}
                                                     live2 = {live2}
                                                     setlive2 = {setlive2}
+                                                    visit={visit}
+                                                   
                                                 />} 
                   />
                   <Route path='visitprofile' element={<VProfile 
@@ -167,6 +171,7 @@ function App() {
                   />
                  <Route path='notification' element={<Notification 
                                                         userName={userName}
+                                                        userDetailsArray={userDetailsArray}
                                                     />} 
                  />
                  <Route path='newpost' element={<NewPost 

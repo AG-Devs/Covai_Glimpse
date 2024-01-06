@@ -9,15 +9,19 @@
     
 }
 .followedusers{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
     width: 20%;
 }
 .followedusers>img{
-   height: 40%;
+   height: 50%;
    width: 30%;
    border-radius: 50%;
    background: transparent;
 }
-.followedusers>p{
+.followedusers2>p{
+    margin-top:1%;
     position: relative;
     color:blueviolet ;
     left: 7%;

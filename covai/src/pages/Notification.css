@@ -2,7 +2,7 @@
   position: absolute;
   top: 16%;
   left: 23%;
-  width: 40%;
+  width: 60%;
   height: 70%;
 }
 .notificationPage2{
@@ -17,13 +17,22 @@
     height: 70%;
 }
 .notificationPage3>h1{
-    width: 200%;
+    width: 250%;
     color: blueviolet;
     height:20% ;
 }
 .notificationPage4{
+    margin-left: 30%;
     height: 30%;
     width: 200%;
     background-color: white;
     box-shadow: 0.1rem 0.1rem 0.4rem black;
+}
+.notificationPage4>p{
+    margin-left: 5%;
+}
+.notificationPage3>h2{
+    position: absolute;
+    top: 25%;
+    left: 23%;
 }

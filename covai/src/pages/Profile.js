@@ -93,7 +93,13 @@ const Profile = ({userDetailsArray,setuserDetailsArray,profileVideo,setprofileVi
               }  
             });       
   }
+  const temp19=userDetailsArray.filter((single)=>(
+    single.userName === userName
+))
+const temp20=temp19[0].followedUser
+
       const sendImgToDataBase = (profileImage3)=>{
+
         const profileImage2 = profileImage3 ? profileImage3 : null
         axios.post('http://localhost:3001/send/profileimg',{
               userName,
