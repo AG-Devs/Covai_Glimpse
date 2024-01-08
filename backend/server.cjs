@@ -10,7 +10,6 @@ dotenv.config()
 
 app.use(bodyParser.json({limit: '10mb'}));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
-app.use(express.json());
 
 mongoose.connect(process.env.MONGOOSE_URL)
 

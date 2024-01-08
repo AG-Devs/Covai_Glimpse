@@ -7,7 +7,7 @@
     "start": "nodemon server.cjs",
     "build": "npm i"
   },
-  "author": "PARG DEVS",
+  "author": "AG DEVS",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
