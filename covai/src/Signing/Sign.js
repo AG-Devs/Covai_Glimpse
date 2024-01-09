@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './Sign.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
 
 const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,userDetailsArray,setuserDetailsArray,mobilenumber,gmail,gender,age,profileImage,profileVideo,totalPosts,totalLikes,followers,likedPosts,dislikedPosts,commentedPosts,followedUsers,Notifications}) => {
 
@@ -9,6 +11,10 @@ const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,u
     const [createPassword,setcreatePassword]=useState('')
     const [reEnterPassword,setreEnterPassword]=useState('')
     const [checker,setchecker] = useState(true)
+    const [eye1,seteye1] = useState(true)
+    const [eye2,seteye2] = useState(true)
+    const [see1,setsee1] = useState(true)
+    const [see2,setsee2] = useState(true)
 
     /*useEffect(()=>{
         fetch('https://covai-glimpse.onrender.com/dashboard/user', {
@@ -52,7 +58,6 @@ const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,u
                 })
                 .then(res => { 
                         if (res.data === 'exist'){
-                            setname('')
                             alert('User already exist')
                         }
                         else if (res.data === 'not exist'){
@@ -75,9 +80,18 @@ const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,u
     else {
         alert("Password doesn't match")
     }
-
 }
-    
+
+const handleEye1 =(e)=>{
+    e.preventDefault()
+    seteye1(!eye1)
+    setsee1(!see1)
+}    
+const handleEye2 =(e)=>{
+    e.preventDefault()
+    seteye2(!eye2)
+    setsee2(!see2)
+}    
 
   return (
     <div className='Sign'>
@@ -96,17 +110,19 @@ const Sign = ({userName,setuserName,Password,setPassword,data,setdata,navigate,u
                         value={createPassword}
                         onChange={(e)=>{setcreatePassword(e.target.value)}}
                         placeholder='Create Password'
-                        type='password'
+                        type={see1 ? 'password' : 'text'}
                         required
                     ></input>
-                    <label>Mobile Number</label>
+                    <span className='eye1'>{eye1 ? <IoEyeOutline onClick={(e)=>{handleEye1(e)}}/> : <IoEyeOffOutline onClick={(e)=>{handleEye1(e)}} />}</span>
+                    <label>ReEnter Password</label>
                     <input
                         value={reEnterPassword}
                         onChange={(e)=>{setreEnterPassword(e.target.value)}}
                         placeholder='Re-enter Password'
-                        type='password'
+                        type={see2 ? 'password' : 'text'}
                         required
                     ></input>
+                    <span className='eye2'>{eye2 ? <IoEyeOutline onClick={(e)=>{handleEye2(e)}}/> : <IoEyeOffOutline onClick={(e)=>{handleEye2(e)}} />}</span>
                     <button type='submit' className='signupButton'>Sign Up</button>
                 </form>
                 <p>Already have account? <Link to='/' className='Link'>Sign In</Link></p>
